@@ -86,9 +86,10 @@
                   <div>
                     <i class="fa-solid fa-xl fa-shopping-cart"></i>
                     <span
-                      class="badge rounded-pill badge-notification bg-light text-dark"
+                      class="badge rounded-pill badge-notification"
                       id="cartCount"
-                    ></span>
+                    >
+                    </span>
                   </div>
                   Cart
                 </a>
@@ -145,7 +146,7 @@
                 aria-label="Default select example"
               >
                 <option value="all">All Brands</option>
-                <option value="Apple">Apple</option>
+                <option value="Iphone">Iphone</option>
                 <option value="Samsung">Samsung</option>
               </select>
             </div>
@@ -360,6 +361,13 @@
         }
       });
     </script>
-    <script type="module" src="../controller/main.js"></script>
+
+    <!-- Model JS -->
+    <script src="../model/product.js"></script>
+    <script src="../model/cartItem.js"></script>
+    <!-- Service JS -->
+    <script src="../services/phoneService.js"></script>
+    <!-- Controller -->
+    <script src="../controller/main.js"></script>
   </body>
 </html>

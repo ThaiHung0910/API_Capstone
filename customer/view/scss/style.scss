@@ -6,6 +6,7 @@ $bg-color: linear-gradient(
   rgba(0, 212, 255, 1) 100%
 );
 $color-white: #ffffff;
+$color-black: #000000;
 $color-blue: #2a72dc;
 $color-blue-2: #1d355e;
 $color-yellow: #f9d310;
@@ -84,15 +85,9 @@ h2 {
   position: relative;
   border: 0;
   padding: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 3px;
   color: rgba(255, 255, 255, 0.85);
-  font-family: "Muli";
-  font-size: 14px;
   line-height: 14px;
-  background-color: #294d5c;
   cursor: pointer;
   transition: all 0.15s;
   &:hover {
@@ -311,6 +306,8 @@ tfoot th {
 /* cart count icon */
 .nav-link {
   .badge {
+    color: $color-white;
+    background-color: $color-blue;
     position: relative;
     padding: 0.2em 0.5em;
     top: -10px;
@@ -385,10 +382,6 @@ span {
   user-select: none;
 }
 
-.quantityResult {
-  font-size: 17px;
-  font-weight: 600;
-}
 /* //COUNT BUTTON */
 
 /* PRODUCT CARD */
@@ -397,51 +390,48 @@ span {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  .product__content {
-    .product__item {
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      padding: 30px;
-      animation-name: scaleUp;
-      animation-iteration-count: 1;
-      animation-duration: 2s;
-      opacity: 0;
-      animation-fill-mode: forwards;
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          animation-delay: $i * 1s;
-        }
-      }
 
-      img {
-        width: 70%;
-        height: 70%;
-        box-shadow: 0 2px 4px #e2ebfc;
+  .product__item {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 30px;
+    animation-name: scaleUp;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 1s;
       }
+    }
 
-      .item__text {
-        h3 {
-          @include styleText($fs-sub-title, $color-blue, $fw-semi-bold);
-          display: flex;
-          justify-content: space-between;
-        }
-        p {
-          @include styleText($fs-paragraph, $color-blue-2, $fw-semi-bold);
-        }
-      }
+    img {
+      width: 70%;
+      height: 70%;
+      box-shadow: 0 2px 4px #e2ebfc;
+    }
 
-      .item__action {
+    .item__text {
+      @include styleText($fs-paragraph, $color-blue-2, $fw-semi-bold);
+      h3 {
+        @include styleText($fs-sub-title, $color-blue, $fw-semi-bold);
         display: flex;
         justify-content: space-between;
-        align-items: center;
+      }
+    }
 
-        .rate {
-          color: $color-yellow;
-        }
+    .item__action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-        button {
-          @include styleButton($color-blue, $color-white, none);
-        }
+      .rate {
+        color: $color-yellow;
+      }
+
+      button {
+        @include styleButton($color-blue, $color-white, none);
       }
     }
   }
@@ -477,7 +467,8 @@ span {
 
   &:hover {
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
     z-index: 1;
     .btn {
       top: 85%;
@@ -486,91 +477,6 @@ span {
   }
 }
 
-// .card {
-//   flex-direction: row;
-//   border: solid 1px rgb(238, 238, 238);
-//   border-radius: 15px;
-//   padding: 10px;
-//   cursor: pointer;
-//   box-shadow: 6px 6px 12px #e2ebfc, -6px -6px 12px #fff;
-//   transition: 0.3s all ease-in-out;
-//   height: 600px;
-//   max-width: 100%;
-//   overflow: hidden;
-//   position: relative;
-//   .content-overlay {
-//     background: rgba(0, 0, 0, 0.8);
-//     position: absolute;
-//     height: 120%;
-//     width: 100%;
-//     left: 0;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     opacity: 0;
-//     -webkit-transition: all 0.4s ease-in-out 0s;
-//     -moz-transition: all 0.4s ease-in-out 0s;
-//     transition: all 0.4s ease-in-out 0s;
-//   }
-//   &:hover {
-//     /* box-shadow: 2px 2px 30px #8b25ff; */
-//     /* box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
-//           rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
-//           rgba(240, 46, 170, 0.05) 25px 25px; */
-//     border: none;
-//     box-shadow: #293e63 0px 22px 70px 4px;
-//     transform: scale(1.1);
-//     z-index: 1;
-//     .content-overlay {
-//       opacity: 1;
-//     }
-//     .content-details {
-//       top: 40%;
-//       left: 50%;
-//       opacity: 1;
-//     }
-//     .btn {
-//       &:active {
-//         transition: all 0.15s ease-in-out 0s;
-//         background-color: #ffdc74;
-//       }
-
-//       top: 85%;
-//       opacity: 1;
-//     }
-//   }
-//   .btn {
-//     font-size: 17px;
-//     border-radius: 20px;
-//     position: absolute;
-//     top: 100%;
-//     left: 25%;
-//     transition: all 0.5s ease-in-out 0s;
-//     z-index: 1;
-//     background-color: #daa300;
-//     opacity: 0;
-//     &:hover {
-//       background-color: #f0b70e;
-//     }
-//   }
-
-//   span {
-//     font-weight: 400;
-//     font-size: 14px;
-//   }
-
-//   b {
-//     font-weight: 600;
-//   }
-
-//   h5 {
-//     font-size: 16px;
-//   }
-
-//   .text-muted {
-//     font-size: 16px;
-//   }
-// }
 
 .fadeIn-top {
   top: 20%;
