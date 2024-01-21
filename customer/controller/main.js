@@ -60,6 +60,7 @@ function addProduct(id) {
     .then(function (res) {
       var product = res.data;
       var cartLength = cart.length   
+      var isAddCartItem = false
       var cartItem = new CartItem(
         1,
         new Product(
@@ -76,32 +77,33 @@ function addProduct(id) {
       );
       if (cartLength > 0) {
         for (var i = 0; i < cartLength; i++) {
-          console.log(cart[i].product.name)
-          console.log(product.name)
           if (cart[i].product.name === product.name) {
             cart[i].quality++;
-          } else {
-            console.log(cartItem)
-            cart.push(cartItem);
-          }
+            isAddCartItem = true
+            break;
+          } 
+        }
+        if(!isAddCartItem) {
+          cart.push(cartItem);
         }
       } else {
         cart.push(cartItem);
       }
-      console.log(cart)
-      renderCart(cartLength)
       onSuccess("Add Success!")
+      renderCart(cart.length, 'badge')
     })
     .catch(function (err) {
       console.log(err);
     });
 }
 
-function renderCart(length) {
+function renderCart(length, className) {
   var qualityCount = 0
+  cartCount.classList.add(className)
   if(length > 0) {
     for(var i = 0; i < length; i++) {
       qualityCount += cart[i].quality
+      console.log(qualityCount)
     }
     cartCount.innerHTML = qualityCount
   } else {
