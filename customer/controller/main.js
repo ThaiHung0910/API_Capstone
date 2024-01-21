@@ -9,28 +9,28 @@ function renderProduct(arrProductList) {
   var content = [];
   for (var i = 0; i < arrProductList.length; i++) {
     var arr = arrProductList[i];
-    content += `
-        <div class="product__item card">
-          <img src="${arr.img}" alt="" />
-          <div class="item__text">
-            <h3>${arr.name}</h3>
-            <span>$${arr.price}</span>
-          </div>
+    content += `  
 
-          <div class="item__action">
-            <div class="rate">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <button onclick="addProduct(${arr.id})" class="btn btnAdd">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span>Add</span>
-            </button>
-          </div>
-        </div>`;
+    <div class="product_item card">
+      <div class="item_container">
+        <img class="product_img" src="${arr.img}" alt="">
+        <div class="out-of-stock-cover"><span>Out Of Stock</span></div>
+      </div>
+      <div class="item_details">
+        <div class="name">
+          <h3 class="product_name">${arr.name}</h3>
+          <button onclick="this.classList.toggle(&quot;fav&quot;)" class="heart"><i class="fas fa-heart"></i></button>
+        </div>
+        <div class="wrapper">
+          <h5>${arr.desc}</h5>
+        </div>
+        <div class="purchase">
+          <p class="product_price">$${arr.price}</p>
+          <button onclick="addProduct(${arr.id})" class="btn btn_add">Add</button>
+        </div>
+      </div>
+    </div>
+        `;
   }
   document.getElementById("phoneList").innerHTML = content;
 }
@@ -59,8 +59,8 @@ function addProduct(id) {
     .getCurrentProduct(id)
     .then(function (res) {
       var product = res.data;
-      var cartLength = cart.length   
-      var isAddCartItem = false
+      var cartLength = cart.length;
+      var isAddCartItem = false;
       var cartItem = new CartItem(
         1,
         new Product(
@@ -79,18 +79,18 @@ function addProduct(id) {
         for (var i = 0; i < cartLength; i++) {
           if (cart[i].product.name === product.name) {
             cart[i].quality++;
-            isAddCartItem = true
+            isAddCartItem = true;
             break;
-          } 
+          }
         }
-        if(!isAddCartItem) {
+        if (!isAddCartItem) {
           cart.push(cartItem);
         }
       } else {
         cart.push(cartItem);
       }
-      onSuccess("Add Success!")
-      renderCart(cart.length, 'badge')
+      onSuccess("Add Success!");
+      renderCart(cart.length, "badge");
     })
     .catch(function (err) {
       console.log(err);
@@ -98,20 +98,19 @@ function addProduct(id) {
 }
 
 function renderCart(length, className) {
-  var qualityCount = 0
-  cartCount.classList.add(className)
-  if(length > 0) {
-    for(var i = 0; i < length; i++) {
-      qualityCount += cart[i].quality
-      console.log(qualityCount)
+  var qualityCount = 0;
+  cartCount.classList.add(className);
+  if (length > 0) {
+    for (var i = 0; i < length; i++) {
+      qualityCount += cart[i].quality;
+      console.log(qualityCount);
     }
-    cartCount.innerHTML = qualityCount
+    cartCount.innerHTML = qualityCount;
   } else {
-    qualityCount = 1
-    cartCount.innerHTML = qualityCount
+    qualityCount = 1;
+    cartCount.innerHTML = qualityCount;
   }
 }
-
 
 // Event
 selectList.addEventListener("change", selectBrand);
@@ -130,3 +129,4 @@ function fetchProductList() {
 }
 
 fetchProductList();
+
