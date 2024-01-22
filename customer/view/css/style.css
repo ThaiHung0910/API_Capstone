@@ -23,30 +23,12 @@ p {
   padding: 0;
 }
 
-.btn {
-  position: relative;
-  border: 0;
-  padding: 16px;
-  border-radius: 3px;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.btn:hover {
+button {
+  border: none;
+  background: none;
   outline: none;
-  background-color: #5f9db8;
-}
-.btn:focus {
-  outline: 0;
-  box-shadow: none !important;
-  /* box-shadow: 0 0 0 2px #404b61, inset 0 0 0 2px #ffffff; */
-}
-.btn:active {
-  transform: scale(0.95);
-}
-.btn + .btn {
-  margin-left: 8px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .gradient-custom {
@@ -103,138 +85,8 @@ nav.black {
 
 /* //BANNER */
 /* CART */
-.form {
-  position: relative;
-}
-
-.form__footer {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  margin-top: 24px;
-}
-
-.red-btn {
-  background-color: #df461f;
-}
-.red-btn:hover {
-  background-color: #e96443;
-}
-
-.yellow-btn {
-  background-color: #f0b80f;
-}
-.yellow-btn:hover {
-  background-color: #f1ca55;
-}
-
-.microcopy {
-  display: block;
-  color: #9da3af;
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-a {
-  color: #e2007a;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-left {
-  text-align: left;
-}
-
-small {
-  font-size: 14px;
-  color: #9da3af;
-}
-
-.tertiary {
-  color: #9da3af;
-}
-
-.cart.is-hidden .cart__overlay {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.cart.is-hidden .cart__contents {
-  transform: translate(0, 0);
-}
-
-.meh {
-  position: relative;
-  color: #405461;
-  font-family: "Muli";
-}
-
-.cart__overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  visibility: visible;
-  opacity: 1;
-  transition: all 0.25s ease-in;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.cart__contents {
-  position: fixed;
-  top: 10%;
-  bottom: 0;
-  left: 100%;
-  width: 500px;
-  height: 92%;
-  overflow: auto;
-  background-color: #ffffff;
-  transition: all 0.25s ease-in-out;
-  transform: translate(-100%, 0);
-}
-
-.cart__products,
-.cart__totals {
-  padding: 28px;
-}
-
-.cart__totals {
-  background-color: #f7f7f7;
-}
-
-.font-normal {
-  font-weight: normal;
-}
-
-small {
-  font-size: 75%;
-}
-
-td,
-th {
-  padding-bottom: 12px;
-}
-
-tfoot td,
-tfoot th {
-  padding-top: 12px;
-}
-
-.first {
-  order: 1;
-}
-
-#priceTotal {
-  font-weight: 600;
+.cartBtn {
+  color: #ffffff;
 }
 
 /* cart count icon */
@@ -260,23 +112,16 @@ span {
 
 /* //COUNT BUTTON */
 /* PRODUCT CARD */
-.product {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.product .product_item.card {
+.product .product-item {
+  display: block;
+  text-decoration: none;
+  background-color: #ffffff;
+  padding: 10px;
   position: relative;
-  justify-content: center;
-  align-self: center;
-  flex-shrink: 0;
   border-radius: 20px;
-  width: 70%;
-  height: 70%;
-  background-color: #2567ca;
-  overflow: hidden;
-  border: transparent;
+  transition: transform ease-in 0.1s;
+  will-change: transform;
+  position: relative;
   transition: 0.5s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   animation-name: scaleUp;
@@ -285,118 +130,117 @@ span {
   opacity: 0;
   animation-fill-mode: forwards;
 }
-.product .product_item.card:nth-child(1) {
+.product .product-item:nth-child(1) {
   animation-delay: 1s;
 }
-.product .product_item.card:nth-child(2) {
+.product .product-item:nth-child(2) {
   animation-delay: 2s;
 }
-.product .product_item.card:nth-child(3) {
+.product .product-item:nth-child(3) {
   animation-delay: 3s;
 }
-.product .product_item.card:nth-child(4) {
+.product .product-item:nth-child(4) {
   animation-delay: 4s;
 }
-.product .product_item.card:nth-child(5) {
+.product .product-item:nth-child(5) {
   animation-delay: 5s;
 }
-.product .product_item.card:nth-child(6) {
+.product .product-item:nth-child(6) {
   animation-delay: 6s;
 }
-.product .product_item.card .item_container {
-  position: absolute;
-  height: 80%;
-  width: 80%;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  transform: translateY(-5%);
+.product .product-item .img {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  padding-top: 100%;
+  border-radius: 2px 2px 0 0;
 }
-.product .product_item.card .item_container img {
-  width: 100%;
-}
-.product .product_item.card .item_container .out-of-stock-cover {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.25);
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
-.product .product_item.card .item_container .out-of-stock-cover span {
-  font-weight: 900;
-  color: rgba(255, 200, 200, 0.75);
-  font-size: 1.5rem;
-}
-.product .product_item.card .item_details {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 50%;
-  background-color: #4e76bc;
-  border-radius: 20px;
-  padding: 20px;
-  transform: translateY(100%);
-  transition: 0.25s;
-}
-.product .product_item.card .item_details .name {
-  display: flex;
-  justify-content: space-between;
-}
-.product .product_item.card .item_details .name .product_name {
+.product .product-item .name {
   font-size: 18px;
+  color: #000000;
+  font-weight: 600;
+  margin: 10px 0;
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.product .product-item .price {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.product .product-item .price > span {
+  font-size: 16px;
+  color: #2567ca;
+  font-weight: 400;
+}
+.product .product-item .price .like .liked {
+  color: red;
+}
+.product .product-item .action {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #f9d310;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.product .product-item .info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #000000;
+  font-weight: 400;
+}
+.product .product-item .favourite {
+  position: absolute;
+  left: -4px;
+  top: 10px;
+  background-color: #2567ca;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 0 4px;
+  border-radius: 0 3px 3px 0;
+}
+.product .product-item .favourite i {
+  font-size: 12px;
   color: #ffffff;
   font-weight: 600;
 }
-.product .product_item.card .item_details .wrapper {
-  transform: translateY(5px);
-  display: none;
+.product .product-item .favourite span {
+  font-size: 12px;
 }
-.product .product_item.card .item_details .wrapper h5 {
-  font-size: 16px;
-  color: #ffffff;
-  font-weight: 400;
-  padding: 5px 0;
-  font-weight: light;
+.product .product-item .favourite::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 16px;
+  border-top: 4px solid #2567ca;
+  border-left: 4px solid transparent;
+  filter: brightness(70%);
 }
-.product .product_item.card .item_details .purchase {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-.product .product_item.card .item_details .purchase .product_price {
-  font-size: 16px;
-  color: #f9d310;
-  font-weight: 400;
-}
-.product .product_item.card .item_details .purchase p {
-  font-weight: 500;
-}
-.product .product_item.card:hover {
-  width: 75%;
-  height: 75%;
-  overflow: visible;
+.product .product-item:hover {
   border: none;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  z-index: 1;
 }
-.product .product_item.card:hover .wrapper {
+.product .product-item:hover .wrapper {
   display: block;
 }
-.product .product_item.card .btn {
+.product .product-item .btn {
   border-radius: 20px;
-  border: 1px solid #ffffff;
+  border: 1px solid #2567ca;
+  color: #2567ca;
   background: none;
-  color: #ffffff;
-  padding: 6px 10px;
+  padding: 7px 10px;
+  line-height: 16px;
+  transition: all 0.5s;
 }
-.product .product_item.card .btn:hover {
-  background: #ffffff;
-  color: #000000;
+.product .product-item .btn:hover {
+  opacity: 0.7;
 }
 
 .phone_list {

@@ -9,28 +9,44 @@ function renderProduct(arrProductList) {
   var content = [];
   for (var i = 0; i < arrProductList.length; i++) {
     var arr = arrProductList[i];
-    content += `  
+    content += ` 
+    <div class="col-3">
+    <div class="product-item">
+        <div class="img"  style="background-image: url(${arr.img})"></div>
+        <h4 class="name">${arr.name}</h4>
+        <div class="price">
+            <span>$${arr.price}</span>
+            <span class="like">
+              <button onclick="this.classList.toggle(&quot;liked&quot;)"><i class="fa-solid fa-heart"></i></button>
+            </span>
+        </div>
+        <div class="action">
 
-    <div class="product_item card">
-      <div class="item_container">
-        <img class="product_img" src="${arr.img}" alt="">
-        <div class="out-of-stock-cover"><span>Out Of Stock</span></div>
-      </div>
-      <div class="item_details">
-        <div class="name">
-          <h3 class="product_name">${arr.name}</h3>
-          <button onclick="this.classList.toggle(&quot;fav&quot;)" class="heart"><i class="fas fa-heart"></i></button>
+            <div class="rating">
+                <i class="star--gold fa-solid fa-star"></i>
+                <i class="star--gold fa-solid fa-star"></i>
+                <i class="star--gold fa-solid fa-star"></i>
+                <i class="star--gold fa-solid fa-star"></i>
+                <i class="star--gold fa-solid fa-star"></i>
+                <!-- <i class="fa-regular fa-star"></i> -->
+            </div>
+
+            <button onclick="addProduct(${arr.id})" class="btn btn_add">Add</button>
         </div>
-        <div class="wrapper">
-          <h5>${arr.desc}</h5>
+
+        <div class="info">
+            <span class="brand">${arr.screen}</span>
+            <span class="info-name">${arr.frontCamera}</span>
+
         </div>
-        <div class="purchase">
-          <p class="product_price">$${arr.price}</p>
-          <button onclick="addProduct(${arr.id})" class="btn btn_add">Add</button>
+
+        <div class="favourite">
+            <i class="fa-solid fa-check"></i>
+            <span >Yêu thích</span>
         </div>
-      </div>
     </div>
-        `;
+</div>
+    `;
   }
   document.getElementById("phoneList").innerHTML = content;
 }
@@ -115,6 +131,9 @@ function renderCart(length, className) {
 // Event
 selectList.addEventListener("change", selectBrand);
 
+
+
+
 // Call API
 function fetchProductList() {
   phoneServices
@@ -129,4 +148,3 @@ function fetchProductList() {
 }
 
 fetchProductList();
-

@@ -76,22 +76,12 @@
             </ul>
             <ul class="navbar-nav me-auto nav2">
               <li class="nav-item text-center">
-                <a
-                  class="nav-link js-toggle-cart active"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <div>
-                    <i class="fa-solid fa-xl fa-shopping-cart"></i>
-                    <span
-                      class="rounded-pill badge-notification"
-                      id="cartCount"
-                    >
-                    </span>
-                  </div>
+                <button class="cartBtn">
+                  <div><i class="fa-solid fa-xl fa-shopping-cart"></i></div>
                   Cart
-                </a>
+                </button>
+                <span class="rounded-pill badge-notification" id="cartCount">
+                </span>
               </li>
             </ul>
           </div>
@@ -148,13 +138,13 @@
                 <option value="Iphone">Iphone</option>
                 <option value="Samsung">Samsung</option>
               </select>
+              <div class="row product" id="phoneList"></div>
             </div>
-            <div class="mx-0 gy-4 product" id="phoneList"></div>
           </div>
         </div>
       </main>
     </div>
-    <div class="meh">
+    <!-- <div class="meh">
       <div class="cart is-hidden">
         <div class="cart__overlay"></div>
         <div class="cart__contents">
@@ -208,6 +198,28 @@
                 <i class="fa-solid fa-trash me-2"></i> Empty Cart
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="cart">
+      <div class="side-nav" style="right: 0px">
+        <button onclick="sideNav(0)"><i class="fas fa-times"></i></button>
+        <h2>Cart</h2>
+        <div class="cart-items">
+          <span class="empty-cart"
+            >Looks Like You Haven't Added Any Product In The Cart</span
+          >
+        </div>
+        <div class="final">
+          <strong>Total: $ <span class="total">0</span></strong>
+          <div class="action">
+            <button onclick="buy(1)" class="btn buy">
+              Purchase <i class="fas fa-credit-card" style="color: #6665dd"></i>
+            </button>
+            <button onclick="clearCart()" class="btn clear">
+              Clear Cart <i class="fas fa-trash" style="color: #bb342f"></i>
+            </button>
           </div>
         </div>
       </div>

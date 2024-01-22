@@ -12,10 +12,10 @@ $color-blue-2: #4e76bc;
 $color-yellow: #f9d310;
 
 $fs-title: 60px;
-$fs-mini-title: 34px;
 $fs-sub-title: 18px;
 $fs-paragraph1: 16px;
 $fs-paragraph2: 14px;
+$fs-mini: 12px;
 
 $fw-normal: 400;
 $fw-bold: 700;
@@ -76,32 +76,12 @@ p {
 .container {
   padding: 0;
 }
-
-.btn {
-  position: relative;
-  border: 0;
-  padding: 16px;
-  border-radius: 3px;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 14px;
+button {
+  border: none;
+  background: none;
+  outline: none;
   cursor: pointer;
-  transition: all 0.15s;
-  &:hover {
-    outline: none;
-    background-color: #5f9db8;
-  }
-  &:focus {
-    outline: 0;
-    box-shadow: none !important;
-    /* box-shadow: 0 0 0 2px #404b61, inset 0 0 0 2px #ffffff; */
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-  + .btn {
-    margin-left: 8px;
-  }
+  transition: 0.5s;
 }
 
 .gradient-custom {
@@ -163,137 +143,8 @@ nav.black {
 /* //BANNER */
 
 /* CART */
-.form {
-  position: relative;
-}
-
-.form__footer {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  margin-top: 24px;
-}
-
-.red-btn {
-  background-color: #df461f;
-  &:hover {
-    background-color: #e96443;
-  }
-}
-
-.yellow-btn {
-  background-color: #f0b80f;
-  &:hover {
-    background-color: #f1ca55;
-  }
-}
-
-.microcopy {
-  display: block;
-  color: #9da3af;
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-a {
-  color: #e2007a;
-}
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-left {
-  text-align: left;
-}
-
-small {
-  font-size: 14px;
-  color: #9da3af;
-}
-
-.tertiary {
-  color: #9da3af;
-}
-
-.cart.is-hidden .cart__overlay {
-  opacity: 0;
-  visibility: hidden;
-}
-.cart.is-hidden .cart__contents {
-  transform: translate(0, 0);
-}
-
-.meh {
-  position: relative;
-  color: #405461;
-  font-family: "Muli";
-}
-
-.cart__overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  visibility: visible;
-  opacity: 1;
-  transition: all 0.25s ease-in;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.cart__contents {
-  position: fixed;
-  top: 10%;
-  bottom: 0;
-  left: 100%;
-  width: 500px;
-  height: 92%;
-  overflow: auto;
-  background-color: $color-white;
-  transition: all 0.25s ease-in-out;
-  transform: translate(-100%, 0);
-}
-
-.cart__products,
-.cart__totals {
-  padding: 28px;
-}
-
-.cart__totals {
-  background-color: #f7f7f7;
-}
-
-.font-normal {
-  font-weight: normal;
-}
-
-small {
-  font-size: 75%;
-}
-
-td,
-th {
-  padding-bottom: 12px;
-}
-
-tfoot td,
-tfoot th {
-  padding-top: 12px;
-}
-
-.first {
-  order: 1;
-}
-
-#priceTotal {
-  font-weight: $fw-semi-bold;
+.cartBtn {
+  color: $color-white;
 }
 
 /* cart count icon */
@@ -380,28 +231,19 @@ span {
 /* PRODUCT CARD */
 
 .product {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  // gap: 20px;
-
-  .product_item.card {
+  .product-item {
+    display: block;
+    text-decoration: none;
+    background-color: $color-white;
+    padding: 10px;
     position: relative;
-    justify-content: center;
-    align-self: center;
-    flex-shrink: 0;
     border-radius: 20px;
-    width: 70%;
-    height: 70%;
-
-    background-color: $color-blue;
-    overflow: hidden;
-    border: transparent;
+    transition: transform ease-in 0.1s;
+    will-change: transform;
+    position: relative;
     transition: 0.5s;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
       rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    // padding: 30px;
     animation-name: scaleUp;
     animation-iteration-count: 1;
     animation-duration: 2s;
@@ -413,85 +255,102 @@ span {
       }
     }
 
-    .item_container {
-      position: absolute;
-      height: 80%;
-      width: 80%;
-      margin: 0 auto;
-      left: 0;
-      right: 0;
-      transform: translateY(-5%);
-      img {
-        width: 100%;
+    .img {
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: contain;
+      padding-top: 100%;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .name {
+      @include styleText($fs-sub-title, $color-black, $fw-semi-bold);
+      margin: 10px 0;
+      // line-height: 1.8rem;
+      // height: 3.6rem;
+      overflow: hidden;
+      display: block;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .price {
+      
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      > span {
+        @include styleText($fs-paragraph1, $color-blue, $fw-normal);
       }
-      .out-of-stock-cover {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.25);
-        justify-content: center;
-        align-items: center;
-        display: none;
-        span {
-          font-weight: 900;
-          color: rgba(255, 200, 200, 0.75);
-          font-size: 1.5rem;
+      .like {
+        .liked {
+            color: red;
         }
       }
     }
 
-    .item_details {
-      position: absolute;
+    .action {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      width: 100%;
-      height: 50%;
-      background-color: $color-blue-2;
-      border-radius: 20px;
-      padding: 20px;
-      transform: translateY(100%);
-      transition: 0.25s;
-      .name {
-        display: flex;
-        justify-content: space-between;
-        .product_name {
-          @include styleText($fs-sub-title, $color-white, $fw-semi-bold);
-        }
+      @include styleText($fs-paragraph2, $color-yellow, $fw-normal);
+      margin: 10px 0;
+    }
+
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      @include styleText($fs-paragraph2, $color-black, $fw-normal);
+    }
+
+    .favourite {
+      position: absolute;
+      left: -4px;
+      top: 10px;
+      background-color: $color-blue;
+      @include styleText($fs-mini, $color-white, $fw-semi-bold);
+      line-height: 16px;
+      padding: 0 4px;
+      border-radius: 0 3px 3px 0;
+      i {
+        @include styleText($fs-mini, $color-white, $fw-semi-bold);
+        // margin-left: 2px;
       }
-      .wrapper {
-        // flex-direction: column;
-        // justify-content: space-between;
-        transform: translateY(5px);
-        display: none;
-        h5 {
-          @include styleText($fs-paragraph1, $color-white, $fw-normal);
-          padding: 5px 0;
-          font-weight: light;
-        }
+
+      span {
+        font-size: $fs-mini;
       }
-      .purchase {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        .product_price {
-          @include styleText($fs-paragraph1, $color-yellow, $fw-normal);
-        }
-        p {
-          font-weight: 500;
-        }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 16px;
+        border-top: 4px solid  $color-blue;
+        border-left: 4px solid transparent;
+        filter: brightness(70%);
       }
     }
+    // .out-of-stock-cover {
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   background: rgba(0, 0, 0, 0.25);
+    //   justify-content: center;
+    //   align-items: center;
+    //   display: none;
+    //   span {
+    //     font-weight: 900;
+    //     color: rgba(255, 200, 200, 0.75);
+    //     font-size: 1.5rem;
+    //   }
+    // }
 
     &:hover {
-      width: 75%;
-      height: 75%;
-      overflow: visible;
       border: none;
       box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
-      z-index: 1;
       .wrapper {
         display: block;
       }
@@ -499,14 +358,14 @@ span {
 
     .btn {
       border-radius: 20px;
-      border: 1px solid $color-white;
+      border: 1px solid $color-blue;
+      color: $color-blue;
       background: none;
-      color: $color-white;;
-      padding: 6px 10px;
-
+      padding: 7px 10px;
+      line-height: 16px;
+      transition: all 0.5s;
       &:hover {
-        background: $color-white;;
-        color: $color-black;
+        opacity: 0.7;
       }
     }
   }
