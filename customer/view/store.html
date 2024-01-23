@@ -53,7 +53,7 @@
                   aria-expanded="false"
                 >
                   <div>
-                    <i class="fas fa-home fa-xl mb-1"></i>
+                    <i class="fa-solid fa-house fa-xl mb-1"></i>
                   </div>
                   Home
                 </a>
@@ -76,12 +76,22 @@
             </ul>
             <ul class="navbar-nav me-auto nav2">
               <li class="nav-item text-center">
-                <button class="cartBtn">
-                  <div><i class="fa-solid fa-xl fa-shopping-cart"></i></div>
+                <a
+                  class="nav-link js-toggle-cart active"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <div>
+                    <i class="fa-solid fa-xl fa-shopping-cart"></i>
+                    <span
+                      class="rounded-pill badge-notification"
+                      id="cartCount"
+                    >
+                    </span>
+                  </div>
                   Cart
-                </button>
-                <span class="rounded-pill badge-notification" id="cartCount">
-                </span>
+                </a>
               </li>
             </ul>
           </div>
@@ -144,86 +154,60 @@
         </div>
       </main>
     </div>
-    <!-- <div class="meh">
-      <div class="cart is-hidden">
-        <div class="cart__overlay"></div>
-        <div class="cart__contents">
-          <div class="cart__products">
-            <h2>Shopping Cart</h2>
-            <p class="microcopy">An overview of your selected products.</p>
-            <div class="products" id="cartList"></div>
-          </div>
-          <div class="cart__totals">
-            <table class="totals">
-              <tbody>
-                <tr>
-                  <th class="align-left font-normal tertiary">Subtotal</th>
-                  <td class="align-right" id="subTotal">$0</td>
-                </tr>
-                <tr>
-                  <th class="align-left font-normal tertiary">
-                    Shipping <small>(estimated)</small>
-                  </th>
-                  <td class="align-right" id="shipping">$0</td>
-                </tr>
-                <tr>
-                  <th class="align-left font-normal tertiary">
-                    Tax <small>(estimated)</small>
-                  </th>
-                  <td class="align-right" id="tax">$0</td>
-                </tr>
-                <tr>
-                  <th class="align-left">Total</th>
-                  <td class="align-right" id="priceTotal">$0</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="2" class="tertiary">
-                    <small>Estimations based on New York, United States</small>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-            <div class="form__footer">
-              <button class="btn first js-toggle-cart">
-                Continue Shopping
-              </button>
-              <button class="btn yellow-btn" onclick="payNow()">Pay Now</button>
-              <button
-                class="btn me-5 ms-0 px-4 red-btn"
-                onclick="emptyCart()"
-                id="emptyCart"
-              >
-                <i class="fa-solid fa-trash me-2"></i> Empty Cart
-              </button>
-            </div>
-          </div>
+
+    <div class="cart is-hidden">
+      <div class="cart_overlay"></div>
+      <div class="cart_contents">
+        <div class="title">
+          <h2>Shopping Cart</h2>
+          <i class="fa-solid fa-xmark icon-close-cart"></i>
         </div>
-      </div>
-    </div> -->
-    <div class="cart">
-      <div class="side-nav" style="right: 0px">
-        <button onclick="sideNav(0)"><i class="fas fa-times"></i></button>
-        <h2>Cart</h2>
-        <div class="cart-items">
-          <span class="empty-cart"
+        <div class="cart-items" id="cartList">
+          <span class="cart-empty"
             >Looks Like You Haven't Added Any Product In The Cart</span
           >
+          <!-- <div class="cart-item">
+            <div class="cart-img">
+              <img
+                src="https://purepng.com/public/uploads/large/apple-watch-pcq.png"
+                alt=""
+              />
+            </div>
+            <strong class="name">Apple Watch</strong>
+            <span class="qty-change">
+              <div>
+                <button class="btn-qty" onclick="qtyChange(this,'sub')">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <p class="qty">1</p>
+                <button class="btn-qty" onclick="qtyChange(this,'add')">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button></div
+            ></span>
+            <p class="price">$ 500</p>
+            <button onclick="removeItem(this)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div> -->
         </div>
-        <div class="final">
-          <strong>Total: $ <span class="total">0</span></strong>
+
+        <div class="cart_footer">
+          <span>Total: $ <span class="total">0</span></span>
+
           <div class="action">
             <button onclick="buy(1)" class="btn buy">
-              Purchase <i class="fas fa-credit-card" style="color: #6665dd"></i>
+              Purchase
+              <i class="fa-solid fa-credit-card"></i>
             </button>
             <button onclick="clearCart()" class="btn clear">
-              Clear Cart <i class="fas fa-trash" style="color: #bb342f"></i>
+              Clear Cart
+              <i class="fa-solid fa-trash"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
+
     <!-- Footer -->
     <footer
       class="text-center text-lg-start bg-dark text-light gradient-custom"
@@ -358,20 +342,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-      // toggle shopping cart
-      $(".js-toggle-cart, .cart__overlay").on("click", function () {
-        $(".cart").toggleClass("is-hidden");
-      });
-      // change nav bar color when scroll
-      $(window).on("scroll", function () {
-        if (this.scrollY > 100) {
-          $("nav").addClass("black");
-        } else {
-          $("nav").removeClass("black");
-        }
-      });
-    </script>
 
     <!-- Model JS -->
     <script src="../model/product.js"></script>

@@ -17,7 +17,7 @@ function renderProduct(arrProductList) {
         <div class="price">
             <span>$${arr.price}</span>
             <span class="like">
-              <button onclick="this.classList.toggle(&quot;liked&quot;)"><i class="fa-solid fa-heart"></i></button>
+              <button onclick="likeProduct(${arr.id})"><i class="fa-solid fa-heart"></i></button>
             </span>
         </div>
         <div class="action">
@@ -40,7 +40,7 @@ function renderProduct(arrProductList) {
 
         </div>
 
-        <div class="favourite">
+        <div onclick="likeProduct(${arr.id})" class="favourite">
             <i class="fa-solid fa-check"></i>
             <span >Yêu thích</span>
         </div>
@@ -74,9 +74,9 @@ function addProduct(id) {
   phoneServices
     .getCurrentProduct(id)
     .then(function (res) {
-      var product = res.data;
-      var cartLength = cart.length;
-      var isAddCartItem = false;
+      var product = res.data,
+        cartLength = cart.length,
+        isAddCartItem = false;
       var cartItem = new CartItem(
         1,
         new Product(
@@ -128,9 +128,35 @@ function renderCart(length, className) {
   }
 }
 
+function likeProduct(id) {
+  var likeBtn = document.querySelectorAll(".like button"),
+    favourite = document.querySelectorAll(".favourite");
+  for (var i = 0; i < likeBtn.length; i++) {
+    if (i == id - 1) {
+      likeBtn[i].classList.toggle("liked");
+      favourite[i].classList.toggle("liked");
+    }
+  }
+}
+
+
+
+
 // Event
 selectList.addEventListener("change", selectBrand);
 
+// toggle shopping cart
+$(".js-toggle-cart, .cart_overlay, .icon-close-cart").on("click", function () {
+  $(".cart").toggleClass("is-hidden");
+});
+// change nav bar color when scroll
+$(window).on("scroll", function () {
+  if (this.scrollY > 100) {
+    $("nav").addClass("black");
+  } else {
+    $("nav").removeClass("black");
+  }
+});
 
 
 
