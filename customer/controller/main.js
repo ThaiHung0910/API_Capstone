@@ -160,19 +160,21 @@ function renderCart(length) {
                       </button></div
                   ></span>
                   <p class="price">$${cartCurrent.price}</p>
-                  <button class="btnRemoveCartItem" onclick="removeItem(this)">
+                  <button class="btnRemoveCartItem" onclick="removeItem(${cartCurrent.id})">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>`;
     }
+    cartCount.style.display = ""
     cartCount.innerHTML = qualityCount;
     cartItems.innerHTML = htmls;
     cartEmpty.classList.remove('is-show');
   } else {
-    cartCount.style.backgroundColor = "transparent";
-    cartCount.innerHTML = '';
-    cartItems.innerHTML = ''
-    cartEmpty.classList.add('is-show');
+    cartCount.style.display = "none"
+    cartItems.innerHTML = '';
+    cartEmpty.classList.add('is-show')
+    cartItems.appendChild(cartEmpty)
+
   }
 }
 
@@ -222,6 +224,18 @@ function qtyChange(id, action) {
   }
   if (cart.length == 0) {
     toggleCartItem = false;
+  }
+  renderCart(cart.length);
+}
+
+
+function removeItem(id) {
+  for (var i = 0; i < cart.length; i++) {
+    var cartItem = cart[i];
+    if (cartItem.product.id == id) {
+      cart.splice(i, 1);
+      break;
+    }
   }
   renderCart(cart.length);
 }
