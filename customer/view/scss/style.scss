@@ -1,15 +1,11 @@
 // Vararible
-$bg-color: linear-gradient(
-  90deg,
-  rgba(2, 0, 36, 1) 0%,
-  rgba(83, 175, 196, 1) 77%,
-  rgba(0, 212, 255, 1) 100%
-);
+$bg-color: linear-gradient(rgba(29, 38, 113, 0.8), rgb(55 92 195 / 80%));
 $color-white: #ffffff;
 $color-black: #000000;
 $color-blue: #2567ca;
 $color-blue-2: #4e76bc;
 $color-yellow: #f9d310;
+$color-red: #d31a13;
 
 $fs-title: 32px;
 $fs-sub-title: 18px;
@@ -35,20 +31,12 @@ $fw-semi-bold: 600;
   font-weight: $fw;
 }
 
-@mixin styleButton($bg, $color, $shadow) {
-  border: 2px solid $color-blue;
+@mixin styleButton($bg, $color, $bd-color) {
   background-color: $bg;
   color: $color;
-  box-shadow: $shadow;
-  border-radius: 8px;
-  padding: 15px 40px;
+  border: 1px solid $bd-color;
   transition: all 0.5s;
   cursor: pointer;
-
-  &:hover {
-    background-color: $color;
-    color: $bg;
-  }
 }
 
 // Custom css
@@ -70,7 +58,7 @@ body {
 }
 
 p {
-  margin: 0 ;
+  margin: 0;
 }
 
 .container {
@@ -109,6 +97,9 @@ header {
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  p {
+    text-align: left;
+  }
 }
 
 /* BANNER */
@@ -117,12 +108,9 @@ nav.black {
 }
 
 .banner_image {
-  background: $bg-color, url(../img/banner.jpg);
+  background: $bg-color, url(../img/banner.jpg);;
   background-size: cover;
   background-position: center;
-  .btn {
-    font-size: 18px;
-  }
   .banner_desc {
     color: $color-white;
   }
@@ -221,41 +209,52 @@ nav.black {
       top: 10%;
       flex-direction: column;
       .cart-empty {
-        display: block;
+        display: none;
         margin: auto 0;
         font-size: $fs-title;
         font-weight: 900;
         text-align: center;
         color: $color-blue;
       }
-    }
-    .cart-item {
-      display: flex;
-      height: 5rem;
-      width: 100%;
-      align-items: center;
-      justify-content: space-around;
-      border-bottom: 1px solid whitesmoke;
-      .cart-img {
-        width: 5rem;
-        height: 5rem;
-        justify-content: center;
-        img {
-          width: 100%;
-          align-self: center;
-        }
+
+      .cart-empty.is-show {
+        display: block;
       }
-      .qty-change {
-        div {
-          display: flex;
-          .btn-qty {
-            border: 1px solid $color-black;
-            border-radius: 50%;
-            padding: 2px 5px;
-            
+      .cart-item {
+        display: grid;
+        grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+        align-items: center;
+        // display: flex;
+        // justify-content: space-around;
+        width: 100%;
+        border-bottom: 1px solid $color-blue;
+        margin-bottom: 6px;
+        padding: 11px;
+        .cart-img {
+          width: 70px;
+          height: 70px;
+          justify-content: center;
+          img {
+            width: 100%;
+            align-self: center;
           }
-          .qty {
-            padding: 2px 5px;
+        }
+        .qty-change {
+          div {
+            display: flex;
+            .btn-qty {
+              border: 1px solid $color-black;
+              border-radius: 50%;
+              padding: 2px 5px;
+            }
+            .qty {
+              padding: 2px 5px;
+            }
+          }
+        }
+        .btnRemoveCartItem {
+          i {
+            color: $color-red;
           }
         }
       }
@@ -278,15 +277,14 @@ nav.black {
       // display: flex;
       // justify-content: space-evenly;
       .btn {
+        @include styleButton($color-white, $color-black, $color-blue);
         font-size: $fs-sub-title;
         padding: 16px 32px;
-        border: 1px solid $color-black;
         margin-right: 20px;
         border-radius: 10px;
-        transition: all 0.5s;
         &:hover {
           color: $color-black;
-          box-shadow: inset 20em 0 0 0 $color-blue;
+          box-shadow: inset 20em 0 0 0 $color-blue-2;
         }
       }
       .buy {
@@ -296,7 +294,7 @@ nav.black {
       }
       .clear {
         i {
-          color:  #bb342f;
+          color: $color-red;
         }
       }
     }
@@ -437,8 +435,13 @@ span {
         @include styleText($fs-paragraph1, $color-blue, $fw-normal);
       }
       .like {
+        i {
+          color: $color-blue;
+        }
         .liked {
-          color: red;
+          i {
+            color: $color-red;
+          }
         }
       }
     }
@@ -513,15 +516,14 @@ span {
     }
 
     .btn {
+      @include styleButton($color-white, $color-blue, $color-blue);
       border-radius: 20px;
-      border: 1px solid $color-blue;
-      color: $color-blue;
-      background: none;
       padding: 7px 10px;
       line-height: 16px;
-      transition: all 0.5s;
+
       &:hover {
-        opacity: 0.7;
+        background-color: $color-blue;
+        color: $color-white;
       }
     }
   }
