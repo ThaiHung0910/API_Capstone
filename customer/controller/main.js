@@ -1,8 +1,10 @@
 // Var
 var selectList = document.getElementById("selectList");
 var cartCount = document.getElementById("cartCount");
-var cartItems = document.querySelector(".cart-items")
-var cartEmpty = document.querySelector(".cart-empty")
+var cartItems = document.querySelector(".cart-items");
+var cartEmpty = document.querySelector(".cart-empty");
+var totalMoney = document.querySelector(".total");
+var shoppingCart = document.querySelector(".js-toggle-cart div");
 var cart = [];
 
 // Function
@@ -12,7 +14,7 @@ function renderProduct(arrProductList) {
   for (var i = 0; i < arrProductList.length; i++) {
     var arr = arrProductList[i];
     content += ` 
-    <div class="col-3">
+    <div class="col-lg-3 col-md-6 mt-4">
     <div class="product-item">
         <div class="img"  style="background-image: url(${arr.img})"></div>
         <h4 class="name">${arr.name}</h4>
@@ -33,7 +35,7 @@ function renderProduct(arrProductList) {
                 <!-- <i class="fa-regular fa-star"></i> -->
             </div>
 
-            <button onclick="addProduct(${arr.id})" class="btn btn_add">Add</button>
+            <button onclick="addProduct(${arr.id})" class="btn btn_add">ADD TO CART</button>
         </div>
 
         <div class="info">
@@ -122,6 +124,7 @@ function addProduct(id) {
       // }
       // addItemShoppingCart(product)
       onSuccess("Add Success!");
+      saveValueLocalStorage("Cart", cart);
       renderCart(cart.length);
     })
     .catch(function (err) {
@@ -131,7 +134,8 @@ function addProduct(id) {
 
 function renderCart(length) {
   var qualityCount = 0,
-    htmls = ""
+    htmls = "",
+    total = 0;
   cartCount.classList.add("badge");
   if (length > 0) {
     for (var i = 0; i < length; i++) {
@@ -139,6 +143,8 @@ function renderCart(length) {
       var quality = cart[i].quality;
       // Count cart
       qualityCount += quality;
+      // Caculate money
+      total += cartCurrent.price * quality;
       // Html cart
       htmls += `
         <div class="cart-item">
@@ -165,22 +171,22 @@ function renderCart(length) {
                   </button>
                 </div>`;
     }
-    cartCount.style.display = ""
+    shoppingCart.classList.add("shopping_cart");
+    cartCount.style.display = "";
     cartCount.innerHTML = qualityCount;
     cartItems.innerHTML = htmls;
-    cartEmpty.classList.remove('is-show');
+    cartEmpty.classList.remove("is-show");
+    document.querySelector(".total").innerHTML = total;
   } else {
-    cartCount.style.display = "none"
-    cartItems.innerHTML = '';
-    cartEmpty.classList.add('is-show')
-    cartItems.appendChild(cartEmpty)
-
+    shoppingCart.classList.remove("shopping_cart");
+    cartCount.style.display = "none";
+    cartItems.innerHTML = "";
+    cartEmpty.classList.add("is-show");
+    cartItems.appendChild(cartEmpty);
+    document.querySelector(".total").innerHTML = 0;
   }
 }
 
-if (cart.length == 0) {
-  cartEmpty.classList.add('is-show');
-}
 
 function likeProduct(id) {
   var likeBtn = document.querySelectorAll(".like button"),
@@ -225,9 +231,9 @@ function qtyChange(id, action) {
   if (cart.length == 0) {
     toggleCartItem = false;
   }
+  saveValueLocalStorage("Cart", cart);
   renderCart(cart.length);
 }
-
 
 function removeItem(id) {
   for (var i = 0; i < cart.length; i++) {
@@ -237,7 +243,38 @@ function removeItem(id) {
       break;
     }
   }
+  saveValueLocalStorage("Cart", cart);
   renderCart(cart.length);
+}
+
+function saveValueLocalStorage(key, value) {
+  var stringValue = JSON.stringify(value);
+  localStorage.setItem(key, stringValue);
+}
+
+function getValueLocalStorage(key) {
+  var dataLocal = localStorage.getItem(key);
+  if (dataLocal) {
+    cart = JSON.parse(dataLocal);
+    saveValueLocalStorage("Cart", cart);
+    renderCart(cart.length);
+  }
+}
+
+getValueLocalStorage("Cart");
+
+function purchaseCartItem() {
+  cart = [];
+  saveValueLocalStorage("Cart", cart);
+  renderCart(cart.length);
+  onSuccess("Purchase success!", "Thank you for shopping with us!");
+}
+
+function clearCart() {
+  cart = [];
+  saveValueLocalStorage("Cart", cart);
+  renderCart(cart.length);
+  onSuccess("Clear cart success!", " ");
 }
 
 // Event

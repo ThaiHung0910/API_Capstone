@@ -1,5 +1,6 @@
 // Vararible
-$bg-color: linear-gradient(rgba(29, 38, 113, 0.8), rgb(55 92 195 / 80%));
+$bg-color1: linear-gradient(rgba(29, 38, 113, 0.8), rgb(55 92 195 / 80%));
+$bg-color2: linear-gradient(rgba(16, 59, 176, 0.903), rgba(7, 108, 80, 0.8));
 $color-white: #ffffff;
 $color-black: #000000;
 $color-blue: #2567ca;
@@ -73,7 +74,7 @@ button {
 }
 
 .gradient-custom {
-  background: $bg-color;
+  background: $bg-color1;
 }
 
 header {
@@ -86,6 +87,9 @@ header {
     }
   }
 }
+nav.black {
+  background: rgba(0, 0, 0, 0.8);
+}
 
 .nav1 {
   display: flex;
@@ -97,38 +101,160 @@ header {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  p {
-    text-align: left;
-  }
-}
-
-/* BANNER */
-nav.black {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.banner_image {
-  background: $bg-color, url(../img/banner.jpg);;
-  background-size: cover;
-  background-position: center;
-  .banner_desc {
-    color: $color-white;
-  }
-}
-.banner-phone-image img {
-  width: 70%;
-}
-.star-rating {
-  a {
-    color: $color-yellow;
-    margin-right: 10px;
-    &:hover {
-      color: $color-white;
+  .js-toggle-cart {
+    .shopping_cart {
+      transform: translateX(10px);
     }
   }
 }
 
-/* //BANNER */
+// CAROUSEL
+.owl-carousel .owl-stage-outer {
+  overflow: hidden;
+}
+
+.owl-stage {
+  display: flex;
+}
+
+.owl-nav {
+  display: none;
+}
+
+.owl-dots {
+  text-align: center;
+  background: none;
+  z-index: 3;
+  border: none;
+  bottom: 3rem;
+  position: relative;
+  button.owl-dot {
+    padding: 1px 6px;
+  }
+  span {
+    @include styleText($fs-sub-title, $color-blue, $fw-bold);
+    width: 17px;
+    height: 17px;
+    // margin: 5px 2px;
+    background: $color-white;
+    display: block;
+    transition: all 0.3s ease-in-out 0s;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    text-decoration: none;
+    padding: 0;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .owl-dot.active span,
+  .owl-dot:hover span {
+    background: $color-blue;
+  }
+}
+
+.carousel_item {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  align-items: center;
+  padding: 3em 0;
+  // min-height: 90vh;
+  .carousel_info {
+    margin-top: 40px;
+  }
+
+  &:active {
+    cursor: -webkit-grab;
+    cursor: grab;
+  }
+  &::before {
+    content: "";
+    background: linear-gradient(
+      75deg,
+      rgb(16 16 16 / 34%) 10%,
+      rgb(230 2 100 / 0%)
+    );
+    position: absolute;
+    top: 0;
+    min-height: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+  .carousel_inner {
+    display: flex;
+    justify-content: space-between;
+    h5 {
+      font-size: 70px;
+      line-height: 80px;
+      font-weight: bold;
+      color: $color-white;
+      margin: 0;
+    }
+    .carousel_image {
+      width: 500px;
+      img {
+        width: 70%;
+      }
+
+      .carousel_sale {
+        background-color: transparent;
+        color: $color-black;
+        border: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 14%;
+        height: 14%;
+        margin: 0;
+        position: absolute;
+        left: 255px;
+        top: 100px;
+        z-index: 2;
+        .text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          text-transform: uppercase;
+          font-size: $fs-title;
+          font-weight: 700;
+          line-height: 1.2;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+    .carousel_product {
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      padding: 0;
+      .heading {
+        @include styleText($fs-title, $color-white, $fw-bold);
+        margin-bottom: 20px;
+      }
+      .description {
+        .desc {
+          @include styleText($fs-sub-title, $color-white, $fw-normal);
+        }
+      }
+    }
+  }
+}
+
+.carousel_item.item1 {
+  background: $bg-color1;
+}
+.carousel_item.item2 {
+  background: $bg-color2;
+}
+
+// CAROUSEL
 
 /* CART */
 
@@ -222,7 +348,7 @@ nav.black {
       }
       .cart-item {
         display: grid;
-        grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+        grid-template-columns: 1.5fr 2fr 1.5fr 1.5fr 1fr;
         align-items: center;
         // display: flex;
         // justify-content: space-around;

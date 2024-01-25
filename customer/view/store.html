@@ -90,7 +90,7 @@
                     >
                     </span>
                   </div>
-                  <p>Cart</p>
+                  Cart
                 </a>
               </li>
             </ul>
@@ -98,38 +98,84 @@
         </div>
       </nav>
     </header>
-    <div class="banner_image">
-      <div class="container py-5">
-        <div class="row py-5 align-items-center">
-          <div class="col-lg-6">
-            <h5 class="display-4 my-4 font-weight-bold text-white">
-              iPhone 11
-            </h5>
-            <div class="d-flex star-rating mb-5">
-              <a href=""><i class="fa-solid fa-star"></i></a>
-              <a href=""><i class="fa-solid fa-star"></i></a>
-              <a href=""><i class="fa-solid fa-star"></i></a>
-              <a href=""><i class="fa-solid fa-star"></i></a>
-              <a href=""><i class="fa-regular fa-star"></i></a>
+
+    <section class="carousel">
+      <div class="owl-one owl-carousel owl-theme">
+        <div class="carousel_content">
+          <div class="carousel_item item1">
+            <div class="carousel_info">
+              <div class="container">
+                <div class="carousel_inner">
+                  <div class="carousel_image">
+                    <img
+                      src="https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png"
+                      alt="img"
+                    />
+                    <div class="carousel_sale">
+                      <img
+                        class="motion-reduce"
+                        src="//electronic-stella-demo.myshopify.com/cdn/shop/files/slidershow-bnr-shap.png?crop=center&amp;height=136&amp;v=1677663096&amp;width=136"
+                        alt=""
+                        height="136"
+                        width="136"
+                        loading="lazy"
+                      />
+                      <p class="text">
+                        <span>Only</span> <span class="fw-800">$999</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel_product">
+                    <h2 class="heading">IPHONE</h2>
+                    <div class="description">
+                      <p class="desc">Thiết kế điểm nhấn</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="h5 mb-4 pb-3 banner_desc">
-              Thiết kế đột phá, màn hình tuyệt đỉnh"
-            </p>
-            <h3 class="text-white mb-5">1000$</h3>
           </div>
-          <div class="col-lg-6 text-lg-right text-center mt-5 mt-lg-0">
-            <div class="banner-phone-image">
-              <img
-                src="https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png"
-                alt="img"
-              />
+        </div>
+
+        <div class="carousel_content">
+          <div class="carousel_item item2">
+            <div class="carousel_info">
+              <div class="container">
+                <div class="carousel_inner">
+                  <div class="carousel_image">
+                    <img
+                      src="https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png"
+                      alt="img"
+                    />
+                    <div class="carousel_sale">
+                      <img
+                        class="motion-reduce"
+                        src="//electronic-stella-demo.myshopify.com/cdn/shop/files/slidershow-bnr-shap.png?crop=center&amp;height=136&amp;v=1677663096&amp;width=136"
+                        alt=""
+                        height="136"
+                        width="136"
+                        loading="lazy"
+                      />
+                      <p class="text">
+                        <span>Only</span> <span class="fw-800">$999</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="carousel_product">
+                    <h2 class="heading">SAMSUNG</h2>
+                    <div class="description">
+                      <p class="desc">Thiết kế điểm nhấn</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="container" id="content-wrap">
+    <section class="container" id="content-wrap">
       <main role="main" class="pb-5 mb-5">
         <div class="container">
           <div class="my-5">
@@ -148,9 +194,9 @@
           </div>
         </div>
       </main>
-    </div>
+    </section>
 
-    <div class="cart is-hidden">
+    <section class="cart is-hidden">
       <div class="cart_overlay"></div>
       <div class="cart_contents">
         <div class="title">
@@ -164,10 +210,10 @@
         </div>
 
         <div class="cart_footer">
-          <span>Total: $ <span class="total">0</span></span>
+          <span>Total: $ <span class="total"></span></span>
 
           <div class="action">
-            <button onclick="buy(1)" class="btn buy">
+            <button onclick="purchaseCartItem()" class="btn buy">
               Purchase
               <i class="fa-solid fa-credit-card"></i>
             </button>
@@ -178,7 +224,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer
@@ -242,12 +288,6 @@
               </p>
               <p>
                 <a href="#!" class="text-reset">Sumsung</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Xiaomi</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Oppo</a>
               </p>
             </div>
             <!-- Grid column -->
@@ -314,8 +354,55 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Carousel -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".owl-one").owlCarousel({
+          loop: true,
+          margin: 0,
+          nav: false,
+          responsiveClass: true,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          autoplaySpeed: 1000,
+          autoplayHoverPause: false,
+          responsive: {
+            0: {
+              items: 1,
+              nav: false,
+            },
+            480: {
+              items: 1,
+              nav: false,
+            },
+            667: {
+              items: 1,
+              nav: false,
+            },
+            1000: {
+              items: 1,
+              nav: false,
+            },
+          },
+        });
+      });
+    </script>
+
+    <!-- <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.6/axios.min.js"
+      integrity="sha512-CmAbe9oceGW5QqQ3m4+xHwUEILjqe3qxPkgdAsGL6mTDSqNcnoHDDdl+rZTwibMlnw0Sqf3IRvfsKNfIKqX/8g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
     <!-- Model JS -->
     <script src="../model/product.js"></script>
