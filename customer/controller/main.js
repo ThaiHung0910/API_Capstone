@@ -286,7 +286,7 @@ $(".js-toggle-cart, .cart_overlay, .icon-close-cart").on("click", function () {
 });
 // change nav bar color when scroll
 $(window).on("scroll", function () {
-  if (this.scrollY > 100) {
+  if (this.scrollY > 50) {
     $("nav").addClass("black");
   } else {
     $("nav").removeClass("black");

@@ -19,20 +19,12 @@ p {
   margin: 0;
 }
 
-.container {
-  padding: 0;
-}
-
 button {
   border: none;
   background: none;
   outline: none;
   cursor: pointer;
   transition: 0.5s;
-}
-
-.gradient-custom {
-  background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(55, 92, 195, 0.8));
 }
 
 header #navbarColor01 a {
@@ -57,6 +49,9 @@ header #navbarColor01 .nav2 .js-toggle-cart .shopping_cart {
 header nav.black {
   background: rgba(0, 0, 0, 0.7);
 }
+header .navbar-expand-lg .navbar-nav .nav-link {
+  padding: 7px 0;
+}
 
 .owl-carousel .owl-stage-outer {
   overflow: hidden;
@@ -71,10 +66,7 @@ header nav.black {
   align-items: center;
   padding: 3em 0;
   min-height: 90vh;
-  height: 500px;
-}
-.owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info {
-  margin-top: 50px;
+  max-height: 500px;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner {
   display: flex;
@@ -88,10 +80,10 @@ header nav.black {
   margin: 0;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image {
-  width: 500px;
-}
-.owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image img {
-  width: 70%;
+  width: 400px;
+  height: 300px;
+  object-fit: contain;
+  position: relative;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale {
   background-color: transparent;
@@ -101,12 +93,8 @@ header nav.black {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 14%;
-  height: 14%;
-  margin: 0;
   position: absolute;
-  left: 270px;
-  top: 140px;
+  top: -40px;
   z-index: 2;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale .text {
@@ -133,15 +121,16 @@ header nav.black {
   padding: 0;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_product .heading {
-  font-size: 32px;
+  font-size: 48px;
   color: #ffffff;
   font-weight: 700;
   margin-bottom: 20px;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_product .description .desc {
-  font-size: 18px;
+  font-size: 32px;
   color: #ffffff;
-  font-weight: 400;
+  font-weight: 600;
+  opacity: 0.7;
 }
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item:active {
   cursor: -webkit-grab;
@@ -160,8 +149,20 @@ header nav.black {
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item1 {
   background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(55, 92, 195, 0.8)), url(../img/bg1.jpg) no-repeat center/cover;
 }
+.owl-carousel .owl-stage-outer .owl-stage .carousel_item.item1 .carousel_image {
+  background: url(https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png) no-repeat top/contain;
+}
+.owl-carousel .owl-stage-outer .owl-stage .carousel_item.item1 .carousel_image .carousel_sale {
+  right: 30px;
+}
 .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 {
   background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(55, 92, 195, 0.8)), url(../img/bg2.jpg) no-repeat center/cover;
+}
+.owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_sale {
+  right: 10px;
+}
+.owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_image {
+  background: url(https://cdn.mobilecity.vn/mobilecity-vn/images/2022/03/w300/samsung-galaxy-m51-trang.png.webp) no-repeat top/contain;
 }
 .owl-carousel .owl-nav {
   display: none;
@@ -183,9 +184,7 @@ header nav.black {
   font-weight: 700;
   width: 17px;
   height: 17px;
-  background: #ffffff;
   display: block;
-  transition: all 0.3s ease-in-out 0s;
   position: relative;
   background-color: transparent;
   border: 1px solid #ffffff;
@@ -199,28 +198,54 @@ header nav.black {
   background: #2567ca;
 }
 
-@media (max-width: 1199.5px) {
-  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info {
-    margin-top: 80px;
+@media (max-width: 1199.98px) {
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_product .heading {
+    font-size: 28px;
   }
-  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale {
-    left: 220px;
-    width: 20%;
-    height: 20%;
-  }
-  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale img {
-    width: 50%;
-  }
-  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale .text {
-    font-size: 18px;
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_product .description .desc {
+    font-size: 20px;
   }
 }
-@media (max-width: 991.5px) {
+@media (max-width: 991.98px) {
   header .navbar .navbar-collapse.collapse {
     background: rgba(0, 0, 0, 0.7);
   }
   header nav.black .navbar-collapse.collapse {
     background: none;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_info .carousel_inner .carousel_product .heading {
+    font-size: 25px;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_info .carousel_inner .carousel_product .description .desc {
+    font-size: 17px;
+  }
+}
+@media (max-width: 576px) {
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image {
+    width: 150px;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale img {
+    width: 70%;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_image .carousel_sale .text {
+    font-size: 20px;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item1 .carousel_image {
+    background: url(https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png) no-repeat top/contain;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_info .carousel_inner .carousel_product .heading {
+    font-size: 16px;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_info .carousel_inner .carousel_product .description .desc {
+    font-size: 12px;
+  }
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item.item2 .carousel_image {
+    background: url(https://cdn.mobilecity.vn/mobilecity-vn/images/2022/03/w300/samsung-galaxy-m51-trang.png.webp) no-repeat top/contain;
+  }
+}
+@media (max-width: 991.98px) {
+  .form-select {
+    padding: 16px;
   }
 }
 /* CART */
@@ -282,7 +307,7 @@ header nav.black {
   font-size: 32px;
   color: #000000;
   position: absolute;
-  top: 5px;
+  top: 0;
   right: 25px;
   cursor: pointer;
 }
@@ -291,8 +316,9 @@ header nav.black {
   position: absolute;
   width: 90%;
   margin: 0 5%;
-  height: 50%;
+  max-height: 50%;
   top: 10%;
+  overflow-y: auto;
   flex-direction: column;
 }
 .cart .cart_contents .cart-items .cart-empty {
@@ -344,12 +370,12 @@ header nav.black {
   align-self: flex-end;
   flex-direction: column;
   right: 0;
-  bottom: 10%;
+  bottom: 7%;
 }
 .cart .cart_footer span {
-  font-size: 18px;
+  font-size: 32px;
   color: #000000;
-  font-weight: 600;
+  font-weight: 700;
   align-self: flex-end;
   margin: 0 20px 16px 0;
 }
@@ -386,6 +412,30 @@ header nav.black {
   z-index: 1;
 }
 
+@media (max-width: 1199.98px) {
+  .cart .cart_contents {
+    width: 60%;
+  }
+  .cart .cart_contents .title h2 {
+    font-size: 26px;
+  }
+  .cart .cart_contents .cart-items .cart-empty {
+    font-size: 26px;
+  }
+  .cart .cart_footer span {
+    font-size: 26px;
+  }
+}
+@media (max-width: 991.98px) {
+  .cart .cart_contents .cart-items .cart-item .price {
+    transform: translateX(7px);
+  }
+}
+@media (max-width: 576px) {
+  .cart .cart_contents {
+    width: 100%;
+  }
+}
 /* //CART */
 /*Prevent text selection*/
 span {
@@ -449,6 +499,7 @@ span {
 .product .product-item .action {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 14px;
   color: #f9d310;
   font-weight: 400;
@@ -527,47 +578,58 @@ span {
   object-fit: contain;
 }
 
+@media (max-width: 1199.98px) {
+  .product .product-item .action {
+    font-size: 12px;
+  }
+  .product .product-item .btn {
+    padding: 5px;
+  }
+}
+@media (max-width: 991.98px) {
+  .product .product-item .favourite {
+    padding: 4px 8px;
+  }
+  .product .product-item .favourite span {
+    font-size: 14px;
+  }
+  .product .product-item .favourite::after {
+    top: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .product .product-item .favourite {
+    padding: 6px 12px;
+  }
+  .product .product-item .favourite i {
+    font-size: 14px;
+  }
+  .product .product-item .favourite span {
+    font-size: 18px;
+  }
+  .product .product-item .favourite::after {
+    top: 30px;
+  }
+}
 /* //PRODUCT CARD */
-footer {
-  /* position: absolute; */
+footer.gradient-custom {
   bottom: 0;
   width: 100%;
-  /*height: 65rem;*/
+  background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(55, 92, 195, 0.8));
+}
+footer.gradient-custom .copyright {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+footer.gradient-custom .text-reset {
+  text-decoration: none;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
 }
 
-@media (max-width: 1199.5px) {
-  /* .card {
-      height: 600px;
-    } */
-}
-@media (max-width: 991.5px) {
-  .product {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  /* .card {
-      height: 550px;
-    } */
-  .card span {
-    font-size: 1.1rem;
-  }
-  #selectList {
-    width: 100% !important;
-  }
-}
-@media (max-width: 525.5px) {
-  #content.my-5 {
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
-  }
-  .col-lg-4,
-  .col-md-6 {
-    padding-left: 0;
-  }
-  .cart__contents {
-    width: 400px;
-  }
-  #selectList {
-    width: 100% !important;
+@media (max-width: 415px) {
+  footer.gradient-custom .about {
+    padding: 1px;
   }
 }
 @keyframes scaleUp {
