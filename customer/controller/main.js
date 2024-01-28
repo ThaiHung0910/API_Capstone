@@ -5,6 +5,8 @@ var cartItems = document.querySelector(".cart-items");
 var cartEmpty = document.querySelector(".cart-empty");
 var totalMoney = document.querySelector(".total");
 var shoppingCart = document.querySelector(".js-toggle-cart div");
+var carousel = document.querySelector(".carousel");
+var orderOverlay = document.querySelector(".order-overlay");
 var cart = [];
 
 // Function
@@ -187,7 +189,6 @@ function renderCart(length) {
   }
 }
 
-
 function likeProduct(id) {
   var likeBtn = document.querySelectorAll(".like button"),
     favourite = document.querySelectorAll(".favourite");
@@ -263,11 +264,49 @@ function getValueLocalStorage(key) {
 
 getValueLocalStorage("Cart");
 
-function purchaseCartItem() {
-  cart = [];
-  saveValueLocalStorage("Cart", cart);
-  renderCart(cart.length);
-  onSuccess("Purchase success!", "Thank you for shopping with us!");
+function purchase() {
+  var price = document.querySelector(".total").innerText,
+    productQuality = "",
+    totalPrice = "";
+  for (var i = 0; i < cart.length; i++) {
+    var product = cart[i].product,
+      quality = cart[i].quality;
+    productQuality += `<p>${quality} X ${product.name}</p>`;
+    totalPrice += `<p>$ ${product.price * quality}</p>`;
+  }
+  $("body").addClass("stop-scrolling");
+
+  return `<div class="invoice">
+      <div class="shipping-items">
+        <div class="item-names">${productQuality}</div>
+        <div class="items-price">${totalPrice}</div>
+      </div>
+      <hr />
+      <div class="payment">
+        <em>payment</em>
+        <div>
+          <p>total amount to be paid:</p>
+          <span class="pay">$ ${price}</span>
+        </div>
+      </div>
+      <div class="order">
+        <button onclick="order(${price})" class="btn-order btn">Order Now</button>
+        <button onclick="cancel()" class="btn-cancel btn">Cancel</button>
+      </div>
+    </div>`;
+}
+
+function purchaseCartItem(e) {
+  if (cart.length) {
+    orderOverlay.style.display = e ? "block" : "none";
+    document.querySelector(".order-now").innerHTML = e ? purchase() : "";
+    carousel.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+    document.querySelector(".cart").classList.toggle("is-hidden")
+  }
 }
 
 function clearCart() {
@@ -277,13 +316,63 @@ function clearCart() {
   onSuccess("Clear cart success!", " ");
 }
 
+function order(money) {
+  let e = document.getElementsByClassName("invoice")[0];
+  e.style.height = "500px";
+  e.style.width = "400px";
+  e.innerHTML = orderConfirm(money);
+}
+
+function cancel() {
+  purchaseCartItem(0);
+  $("body").removeClass("stop-scrolling")
+}
+
+function orderConfirm(money) {
+  cart = [];
+  saveValueLocalStorage("Cart", cart);
+  renderCart(cart.length);
+  carousel.scrollIntoView({
+    behavior: "smooth",
+    block: "end",
+    inline: "nearest",
+  });
+  return `<div>
+    <div class="order-details">
+      <em>Your order has been placed</em>
+      <p>Your order-id is : <span>${Math.round(1e3 * Math.random())}</span></p>
+      <p>Your order will be delivered to you in 3-5 working days</p>
+      <p>You can pay <span>$ ${money}</span> by card or any online transaction method after the products have been dilivered to you</p>
+    </div>
+    <button onclick="okay(event)" class="btn-ok">Okay</button>
+  </div>`;
+}
+
+function okay(e) {
+  let t = document.getElementsByClassName("invoice")[0];
+  "Continue" == e.target.innerText
+    ? ((t.style.display = "none"),
+      (orderOverlay.style.display = "none"),
+      $("body").removeClass("stop-scrolling"))
+    : ((e.target.innerText = "Continue"),
+      (e.target.parentElement.querySelector(".order-details").innerHTML =
+        "<em class='thanks'>Thanks for shopping with us</em>"),
+      (t.style.height = "180px"));
+}
+
+
+
+
 // Event
 selectList.addEventListener("change", selectBrand);
 
 // toggle shopping cart
-$(".js-toggle-cart, .cart_overlay, .icon-close-cart").on("click", function () {
-  $(".cart").toggleClass("is-hidden");
-});
+$(".js-toggle-cart, .cart_overlay, .icon-close-cart").on(
+  "click",
+  function () {
+    $(".cart").toggleClass("is-hidden");
+  }
+);
 // change nav bar color when scroll
 $(window).on("scroll", function () {
   if (this.scrollY > 50) {

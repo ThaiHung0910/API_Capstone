@@ -8,8 +8,8 @@ $color-yellow: #f9d310;
 $color-red: #d31a13;
 $navbar-color: rgba(0, 0, 0, 0.7);
 
-$fs-carousel-title: 48px;
 $fs-title: 32px;
+$fs-title1: 20px;
 $fs-sub-title: 18px;
 $fs-paragraph: 14px;
 $fs-mini: 12px;
@@ -49,6 +49,7 @@ $fw-semi-bold: 600;
 }
 
 html {
+  // font-family: "Montserrat", sans-serif;
   position: relative;
   min-height: 100%;
   font-size: 16px;
@@ -68,8 +69,16 @@ button {
   background: none;
   outline: none;
   cursor: pointer;
-  transition: 0.5s;
 }
+
+// Scroll
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+// 
+
 
 // Header
 
@@ -103,13 +112,30 @@ header {
   }
 
   .navbar-expand-lg {
-    .navbar-nav {
-      .nav-link {
-        padding: 7px 0;
-        // padding: 0;
+    .navbar-collapse.collapse {
+      .navbar-nav {
+        .nav-link {
+          padding: 7px 0;
+          // padding: 0;
+        }
       }
     }
   }
+}
+
+@media (min-width: 992px) {
+  header {
+    .navbar-expand-lg {
+      .navbar-brand {
+        margin-left: 12px;
+      }
+  
+      .navbar-collapse.collapse {
+        margin-right: 12px;
+      }
+    }
+
+   }
 }
 
 // Header
@@ -181,7 +207,7 @@ header {
               max-width: 100%;
               padding: 0;
               .heading {
-                @include styleText($fs-carousel-title, $color-white, $fw-bold);
+                @include styleText(48px, $color-white, $fw-bold);
                 margin-bottom: 20px;
               }
               .description {
@@ -269,6 +295,24 @@ header {
   }
 }
 
+@media (min-width: 992px) {
+
+  .owl-carousel {
+    .owl-stage-outer {
+      .owl-stage {
+        .carousel_item {
+          .carousel_info {
+            .carousel_inner {
+              margin-right: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 @media (max-width: 1199.98px) {
   .owl-carousel {
     .owl-stage-outer {
@@ -284,7 +328,7 @@ header {
               .carousel_product {
                 .description {
                   .desc {
-                    font-size: 20px;
+                    font-size: $fs-title1;
                   }
                 }
               }
@@ -344,8 +388,6 @@ header {
         .carousel_item {
           .carousel_info {
             .carousel_inner {
-              
-
               .carousel_image {
                 width: 150px;
                 .carousel_sale {
@@ -354,14 +396,13 @@ header {
                   }
 
                   .text {
-                    font-size: 20px;
+                    font-size: $fs-title1;
                   }
                 }
               }
             }
           }
         }
-
 
         .carousel_item.item1 {
           .carousel_image {
@@ -394,8 +435,6 @@ header {
       }
     }
   }
-
-  
 }
 
 // CAROUSEL
@@ -537,6 +576,10 @@ header {
           i {
             color: $color-red;
           }
+
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
@@ -557,6 +600,7 @@ header {
     .action {
       // display: flex;
       // justify-content: space-evenly;
+
       .btn {
         @include styleButton($color-white, $color-black, $color-blue);
         font-size: $fs-sub-title;
@@ -685,7 +729,7 @@ span {
     }
 
     .name {
-      @include styleText($fs-sub-title, $color-black, $fw-semi-bold);
+      @include styleText($fs-sub-title, $color-blue, $fw-semi-bold);
       margin: 10px 0;
       // line-height: 1.8rem;
       // height: 3.6rem;
@@ -700,8 +744,8 @@ span {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      > span {
-        @include styleText(16px, $color-blue, $fw-normal);
+      span {
+        @include styleText(16px, $color-black, $fw-semi-bold);
       }
       .like {
         i {
@@ -798,6 +842,7 @@ span {
     }
   }
 }
+
 .phone_list {
   display: flex;
   justify-content: space-evenly;
@@ -812,8 +857,9 @@ span {
 @media (max-width: 1199.98px) {
   .product {
     .product-item {
+
       .action {
-        font-size: $fs-mini;
+        font-size: 10px;
       }
       .btn {
         padding: 5px;
@@ -824,7 +870,26 @@ span {
 
 @media (max-width: 991.98px) {
   .product {
+    margin-left: -24px;
+    margin-right: -24px;
     .product-item {
+      
+      .name {
+        font-size: $fs-cart
+      }
+
+      .price {
+        span {
+          font-size: $fs-title1;
+        }
+      }
+      
+      .action {
+        font-size: $fs-title1;
+      }
+
+
+
       .favourite {
         padding: 4px 8px;
 
@@ -835,6 +900,11 @@ span {
         &::after {
           top: 24px;
         }
+      }
+
+
+      .info {
+        font-size: $fs-sub-title;
       }
     }
   }
@@ -863,18 +933,195 @@ span {
 }
 
 /* //PRODUCT CARD */
+
+// Order
+
+.cover.purchase-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
+.order-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: none;
+  z-index: 9999;
+  .order-now {
+    display: flex;
+    .invoice {
+      display: flex;
+      position: absolute;
+      height: 35%;
+      width: 90%;
+      background: rgba(0, 0, 0, 0.95);
+      color: $color-white;
+      padding: 5% 4%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 30px;
+      align-self: center;
+      flex-direction: column;
+      border-radius: 20px;
+      transition: 0.25s;
+      .shipping-items {
+        display: flex;
+        padding: 10px 0;
+        width: 100%;
+        justify-content: space-between;
+        // .item-names, .items-price {
+        //   display: flex;
+        //   flex-direction: column;
+        //   justify-content: space-around;
+        // }
+      }
+
+      .payment {
+        display: flex;
+        flex-direction: column;
+        em,
+        div {
+          margin-top: 10px;
+          font-weight: $fw-semi-bold;
+        }
+        div {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .order {
+        position: absolute;
+        bottom: 15%;
+        .btn {
+          padding: 1rem 2rem;
+          border-radius: 10px;
+          font-size: $fs-sub-title;
+          &:hover {
+            box-shadow: inset 20em 0 0 0 $color-white;
+          }
+        }
+
+        .btn-order {
+          @include styleButton($color-blue, $color-white, $color-black);
+          margin-right: 20px;
+          &:hover {
+            color: $color-blue;
+          }
+        }
+
+        .btn-cancel {
+          @include styleButton($color-red, $color-white, $color-black);
+          &:hover {
+            color: $color-red;
+          }
+        }
+      }
+
+      .order-details {
+        display: flex;
+        height: 300px;
+        flex-direction: column;
+        justify-content: space-around;
+        em {
+          @include styleText($fs-sub-title, $color-white, $fw-semi-bold)
+        }
+        em, p {
+          border-bottom: 1px dashed $color-white;
+          padding-bottom: 10px;
+        }
+        p {
+          span {
+            font-weight: $fw-semi-bold;
+          }
+        }
+        .thanks {
+          position: absolute;
+          text-align: center;
+          margin: auto;
+          border: none;
+          left: 0;
+          right: 0;
+          bottom: 55%;
+        }
+      }
+
+      .btn-ok {
+        @include styleText($fs-sub-title, $color-white, $fw-bold);
+        position: absolute;
+        width: 80%;
+        border-radius: 10px;
+        padding: 1rem 2rem;
+        margin: auto;
+        bottom: 10%;
+        left: 0;
+        right: 0;
+        background: #5bc0be;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 992px) {
+  .order-overlay {
+    .order-now {
+      .invoice {
+        height: 23%;
+        font-size: $fs-sub-title;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .order-overlay {
+    .order-now {
+      .invoice {
+        height: 11%;
+      }
+    }
+  }
+}
+
+// Order
+
 // Footer
 
 footer.gradient-custom {
   bottom: 0;
   width: 100%;
   background: $bg-color;
+  color: $color-white;
+
+  h6 {
+    @include styleText($fs-sub-title, $color-white, $fw-semi-bold)
+  }
 
   .copyright {
     background-color: rgba(0, 0, 0, 0.05);
   }
   .text-reset {
-    @include styleTextA(16px, $color-white, $fw-normal)
+    @include styleTextA(16px, $color-white, $fw-normal);
+    transition: all 0.5s;
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 

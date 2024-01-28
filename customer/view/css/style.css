@@ -24,7 +24,11 @@ button {
   background: none;
   outline: none;
   cursor: pointer;
-  transition: 0.5s;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 header #navbarColor01 a {
@@ -49,10 +53,18 @@ header #navbarColor01 .nav2 .js-toggle-cart .shopping_cart {
 header nav.black {
   background: rgba(0, 0, 0, 0.7);
 }
-header .navbar-expand-lg .navbar-nav .nav-link {
+header .navbar-expand-lg .navbar-collapse.collapse .navbar-nav .nav-link {
   padding: 7px 0;
 }
 
+@media (min-width: 992px) {
+  header .navbar-expand-lg .navbar-brand {
+    margin-left: 12px;
+  }
+  header .navbar-expand-lg .navbar-collapse.collapse {
+    margin-right: 12px;
+  }
+}
 .owl-carousel .owl-stage-outer {
   overflow: hidden;
 }
@@ -198,6 +210,11 @@ header .navbar-expand-lg .navbar-nav .nav-link {
   background: #2567ca;
 }
 
+@media (min-width: 992px) {
+  .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner {
+    margin-right: 12px;
+  }
+}
 @media (max-width: 1199.98px) {
   .owl-carousel .owl-stage-outer .owl-stage .carousel_item .carousel_info .carousel_inner .carousel_product .heading {
     font-size: 28px;
@@ -364,6 +381,9 @@ header .navbar-expand-lg .navbar-nav .nav-link {
 .cart .cart_contents .cart-items .cart-item .btnRemoveCartItem i {
   color: #d31a13;
 }
+.cart .cart_contents .cart-items .cart-item .btnRemoveCartItem:hover {
+  opacity: 0.7;
+}
 .cart .cart_footer {
   position: absolute;
   display: flex;
@@ -471,7 +491,7 @@ span {
 }
 .product .product-item .name {
   font-size: 18px;
-  color: #000000;
+  color: #2567ca;
   font-weight: 600;
   margin: 10px 0;
   overflow: hidden;
@@ -485,10 +505,10 @@ span {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.product .product-item .price > span {
+.product .product-item .price span {
   font-size: 16px;
-  color: #2567ca;
-  font-weight: 400;
+  color: #000000;
+  font-weight: 600;
 }
 .product .product-item .price .like i {
   color: #2567ca;
@@ -580,13 +600,26 @@ span {
 
 @media (max-width: 1199.98px) {
   .product .product-item .action {
-    font-size: 12px;
+    font-size: 10px;
   }
   .product .product-item .btn {
     padding: 5px;
   }
 }
 @media (max-width: 991.98px) {
+  .product {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+  .product .product-item .name {
+    font-size: 26px;
+  }
+  .product .product-item .price span {
+    font-size: 20px;
+  }
+  .product .product-item .action {
+    font-size: 20px;
+  }
   .product .product-item .favourite {
     padding: 4px 8px;
   }
@@ -595,6 +628,9 @@ span {
   }
   .product .product-item .favourite::after {
     top: 24px;
+  }
+  .product .product-item .info {
+    font-size: 18px;
   }
 }
 @media (max-width: 768px) {
@@ -612,10 +648,164 @@ span {
   }
 }
 /* //PRODUCT CARD */
+.cover.purchase-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
+.order-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: none;
+  z-index: 9999;
+}
+.order-overlay .order-now {
+  display: flex;
+}
+.order-overlay .order-now .invoice {
+  display: flex;
+  position: absolute;
+  height: 35%;
+  width: 90%;
+  background: rgba(0, 0, 0, 0.95);
+  color: #ffffff;
+  padding: 5% 4%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 30px;
+  align-self: center;
+  flex-direction: column;
+  border-radius: 20px;
+  transition: 0.25s;
+}
+.order-overlay .order-now .invoice .shipping-items {
+  display: flex;
+  padding: 10px 0;
+  width: 100%;
+  justify-content: space-between;
+}
+.order-overlay .order-now .invoice .payment {
+  display: flex;
+  flex-direction: column;
+}
+.order-overlay .order-now .invoice .payment em,
+.order-overlay .order-now .invoice .payment div {
+  margin-top: 10px;
+  font-weight: 600;
+}
+.order-overlay .order-now .invoice .payment div {
+  display: flex;
+  justify-content: space-between;
+}
+.order-overlay .order-now .invoice .order {
+  position: absolute;
+  bottom: 15%;
+}
+.order-overlay .order-now .invoice .order .btn {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.order-overlay .order-now .invoice .order .btn:hover {
+  box-shadow: inset 20em 0 0 0 #ffffff;
+}
+.order-overlay .order-now .invoice .order .btn-order {
+  background-color: #2567ca;
+  color: #ffffff;
+  border: 1px solid #000000;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.order-overlay .order-now .invoice .order .btn-order:hover {
+  color: #2567ca;
+}
+.order-overlay .order-now .invoice .order .btn-cancel {
+  background-color: #d31a13;
+  color: #ffffff;
+  border: 1px solid #000000;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.order-overlay .order-now .invoice .order .btn-cancel:hover {
+  color: #d31a13;
+}
+.order-overlay .order-now .invoice .order-details {
+  display: flex;
+  height: 300px;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.order-overlay .order-now .invoice .order-details em {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 600;
+}
+.order-overlay .order-now .invoice .order-details em, .order-overlay .order-now .invoice .order-details p {
+  border-bottom: 1px dashed #ffffff;
+  padding-bottom: 10px;
+}
+.order-overlay .order-now .invoice .order-details p span {
+  font-weight: 600;
+}
+.order-overlay .order-now .invoice .order-details .thanks {
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  border: none;
+  left: 0;
+  right: 0;
+  bottom: 55%;
+}
+.order-overlay .order-now .invoice .btn-ok {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  position: absolute;
+  width: 80%;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin: auto;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  background: #5bc0be;
+}
+
+@media (max-width: 992px) {
+  .order-overlay .order-now .invoice {
+    height: 23%;
+    font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .order-overlay .order-now .invoice {
+    height: 11%;
+  }
+}
 footer.gradient-custom {
   bottom: 0;
   width: 100%;
   background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(55, 92, 195, 0.8));
+  color: #ffffff;
+}
+footer.gradient-custom h6 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 600;
 }
 footer.gradient-custom .copyright {
   background-color: rgba(0, 0, 0, 0.05);
@@ -625,6 +815,10 @@ footer.gradient-custom .text-reset {
   font-size: 16px;
   color: #ffffff;
   font-weight: 400;
+  transition: all 0.5s;
+}
+footer.gradient-custom .text-reset:hover {
+  opacity: 0.9;
 }
 
 @media (max-width: 415px) {
