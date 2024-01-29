@@ -178,14 +178,14 @@ function renderCart(length) {
     cartCount.innerHTML = qualityCount;
     cartItems.innerHTML = htmls;
     cartEmpty.classList.remove("is-show");
-    document.querySelector(".total").innerHTML = total;
+    totalMoney.innerHTML = total;
   } else {
     shoppingCart.classList.remove("shopping_cart");
     cartCount.style.display = "none";
     cartItems.innerHTML = "";
     cartEmpty.classList.add("is-show");
     cartItems.appendChild(cartEmpty);
-    document.querySelector(".total").innerHTML = 0;
+    totalMoney.innerHTML = 0;
   }
 }
 
@@ -200,16 +200,6 @@ function likeProduct(id) {
   }
 }
 
-// function addItemShoppingCart (data) {
-//   cartServices
-//     .createCartItem(data)
-//     .then(function(res)  {
-//             console.log(res.data);
-//           })
-//           .catch(function(err)  {
-//            console.log(err);
-//           });
-// }
 
 function qtyChange(id, action) {
   for (var i = 0; i < cart.length; i++) {
@@ -305,7 +295,7 @@ function purchaseCartItem(e) {
       block: "end",
       inline: "nearest",
     });
-    document.querySelector(".cart").classList.toggle("is-hidden")
+    document.querySelector(".cart").classList.toggle("is-hidden");
   }
 }
 
@@ -313,19 +303,17 @@ function clearCart() {
   cart = [];
   saveValueLocalStorage("Cart", cart);
   renderCart(cart.length);
-  onSuccess("Clear cart success!", " ");
 }
 
 function order(money) {
   let e = document.getElementsByClassName("invoice")[0];
-  e.style.height = "500px";
-  e.style.width = "400px";
+  e.classList.add("responsive");
   e.innerHTML = orderConfirm(money);
 }
 
 function cancel() {
   purchaseCartItem(0);
-  $("body").removeClass("stop-scrolling")
+  $("body").removeClass("stop-scrolling");
 }
 
 function orderConfirm(money) {
@@ -353,26 +341,22 @@ function okay(e) {
   "Continue" == e.target.innerText
     ? ((t.style.display = "none"),
       (orderOverlay.style.display = "none"),
-      $("body").removeClass("stop-scrolling"))
+      $("body").removeClass("stop-scrolling"),
+      t.classList.remove("responsive"))
     : ((e.target.innerText = "Continue"),
       (e.target.parentElement.querySelector(".order-details").innerHTML =
         "<em class='thanks'>Thanks for shopping with us</em>"),
-      (t.style.height = "180px"));
+      (t.style.height = "180px"),
+      (t.style.top = "15%"));
 }
-
-
-
 
 // Event
 selectList.addEventListener("change", selectBrand);
 
 // toggle shopping cart
-$(".js-toggle-cart, .cart_overlay, .icon-close-cart").on(
-  "click",
-  function () {
-    $(".cart").toggleClass("is-hidden");
-  }
-);
+$(".js-toggle-cart, .cart_overlay, .icon-close-cart").on("click", function () {
+  $(".cart").toggleClass("is-hidden");
+});
 // change nav bar color when scroll
 $(window).on("scroll", function () {
   if (this.scrollY > 50) {

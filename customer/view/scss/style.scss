@@ -9,7 +9,7 @@ $color-red: #d31a13;
 $navbar-color: rgba(0, 0, 0, 0.7);
 
 $fs-title: 32px;
-$fs-title1: 20px;
+$fs-mini-title: 20px;
 $fs-sub-title: 18px;
 $fs-paragraph: 14px;
 $fs-mini: 12px;
@@ -77,8 +77,7 @@ button {
   overflow: hidden;
 }
 
-// 
-
+//
 
 // Header
 
@@ -129,13 +128,12 @@ header {
       .navbar-brand {
         margin-left: 12px;
       }
-  
+
       .navbar-collapse.collapse {
         margin-right: 12px;
       }
     }
-
-   }
+  }
 }
 
 // Header
@@ -296,7 +294,6 @@ header {
 }
 
 @media (min-width: 992px) {
-
   .owl-carousel {
     .owl-stage-outer {
       .owl-stage {
@@ -311,7 +308,6 @@ header {
     }
   }
 }
-
 
 @media (max-width: 1199.98px) {
   .owl-carousel {
@@ -328,7 +324,7 @@ header {
               .carousel_product {
                 .description {
                   .desc {
-                    font-size: $fs-title1;
+                    font-size: $fs-mini-title;
                   }
                 }
               }
@@ -385,9 +381,21 @@ header {
   .owl-carousel {
     .owl-stage-outer {
       .owl-stage {
-        .carousel_item {
+        .carousel_item,
+        .carousel_item.item2 {
           .carousel_info {
             .carousel_inner {
+              .carousel_product {
+                .heading {
+                  font-size: 16px;
+                }
+                .description {
+                  .desc {
+                    font-size: $fs-mini;
+                  }
+                }
+              }
+
               .carousel_image {
                 width: 150px;
                 .carousel_sale {
@@ -396,40 +404,11 @@ header {
                   }
 
                   .text {
-                    font-size: $fs-title1;
+                    font-size: $fs-mini-title;
                   }
                 }
               }
             }
-          }
-        }
-
-        .carousel_item.item1 {
-          .carousel_image {
-            background: url(https://vuatao.vn/wp-content/uploads/2021/12/DU3RoMtDeGfChlQ-Apple-iPhone-11-PNG-Photos.png)
-              no-repeat top / contain;
-          }
-        }
-        .carousel_item.item2 {
-          .carousel_info {
-            .carousel_inner {
-              .carousel_product {
-                .heading {
-                  font-size: 16px;
-                }
-              }
-              .carousel_product {
-                .description {
-                  .desc {
-                    font-size: $fs-mini;
-                  }
-                }
-              }
-            }
-          }
-          .carousel_image {
-            background: url(https://cdn.mobilecity.vn/mobilecity-vn/images/2022/03/w300/samsung-galaxy-m51-trang.png.webp)
-              no-repeat top / contain;
           }
         }
       }
@@ -440,10 +419,15 @@ header {
 // CAROUSEL
 
 // Wrap
+.form-select {
+  width: 50%;
+}
 
 @media (max-width: 991.98px) {
   .form-select {
     padding: 16px;
+    width: 60%;
+    margin-left: -12px;
   }
 }
 
@@ -583,47 +567,49 @@ header {
         }
       }
     }
-  }
 
-  .cart_footer {
-    position: absolute;
-    display: flex;
-    align-self: flex-end;
-    flex-direction: column;
-    right: 0;
-    bottom: 7%;
-    span {
-      @include styleText($fs-title, $color-black, $fw-bold);
+    .cart_footer {
+      position: absolute;
+      display: flex;
       align-self: flex-end;
-      margin: 0 20px 16px 0;
-    }
-    .action {
-      // display: flex;
-      // justify-content: space-evenly;
-
-      .btn {
-        @include styleButton($color-white, $color-black, $color-blue);
-        font-size: $fs-sub-title;
-        padding: 16px 32px;
-        margin-right: 20px;
-        border-radius: 10px;
-        &:hover {
-          color: $color-black;
-          box-shadow: inset 20em 0 0 0 $color-blue-2;
-        }
+      flex-direction: column;
+      right: 0;
+      bottom: 7%;
+      span {
+        @include styleText($fs-title, $color-black, $fw-bold);
+        align-self: flex-end;
+        margin: 0 20px 16px 0;
       }
-      .buy {
-        i {
-          color: $color-blue;
+      .action {
+        // display: flex;
+        // justify-content: space-evenly;
+  
+        .btn {
+          @include styleButton($color-white, $color-black, $color-blue);
+          font-size: $fs-sub-title;
+          padding: 16px 32px;
+          margin-right: 20px;
+          border-radius: 10px;
+          &:hover {
+            color: $color-black;
+            box-shadow: inset 20em 0 0 0 $color-blue-2;
+          }
         }
-      }
-      .clear {
-        i {
-          color: $color-red;
+        .buy {
+          i {
+            color: $color-blue;
+          }
+        }
+        .clear {
+          i {
+            color: $color-red;
+          }
         }
       }
     }
   }
+
+  
 }
 
 /* cart count icon */
@@ -653,13 +639,14 @@ header {
           font-size: $fs-cart;
         }
       }
-    }
-
-    .cart_footer {
-      span {
-        font-size: $fs-cart;
+      .cart_footer {
+        span {
+          font-size: $fs-cart;
+        }
       }
     }
+
+    
   }
 }
 
@@ -677,10 +664,60 @@ header {
   }
 }
 
+@media (max-width: 768px) {
+  .cart {
+    .cart_contents {
+      width: 100%;
+    }
+    
+  }
+}
+
 @media (max-width: 576px) {
   .cart {
     .cart_contents {
       width: 100%;
+      .cart-items {
+        .cart-item {
+          .name {
+            font-size: $fs-paragraph;
+          }
+        }
+      }
+      .cart_footer {
+        .action {
+          .btn {
+            margin-right: 4px;
+            padding: 12px 16px;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+
+@media (max-width: 320px) {
+  .cart {
+    .cart_contents {
+      .cart-items {
+        .cart-item {
+          grid-template-columns: 2fr 2fr 2fr 1fr;
+          .cart-img {
+            display: none;
+          }
+        }
+      }
+
+      .cart_footer {
+        .action {
+          .btn {
+            padding: 10px;
+            font-size: $fs-paragraph;
+          }
+        }
+      }
     }
   }
 }
@@ -857,7 +894,6 @@ span {
 @media (max-width: 1199.98px) {
   .product {
     .product-item {
-
       .action {
         font-size: 10px;
       }
@@ -873,22 +909,19 @@ span {
     margin-left: -24px;
     margin-right: -24px;
     .product-item {
-      
       .name {
-        font-size: $fs-cart
+        font-size: $fs-cart;
       }
 
       .price {
         span {
-          font-size: $fs-title1;
+          font-size: $fs-mini-title;
         }
       }
-      
+
       .action {
-        font-size: $fs-title1;
+        font-size: $fs-sub-title;
       }
-
-
 
       .favourite {
         padding: 4px 8px;
@@ -902,7 +935,6 @@ span {
         }
       }
 
-
       .info {
         font-size: $fs-sub-title;
       }
@@ -913,6 +945,11 @@ span {
 @media (max-width: 768px) {
   .product {
     .product-item {
+      .name {
+        font-size: $fs-mini-title;
+      }
+
+
       .favourite {
         padding: 6px 12px;
 
@@ -927,6 +964,16 @@ span {
         &::after {
           top: 30px;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .product {
+    .product-item {
+      .action {
+        font-size: $fs-mini;
       }
     }
   }
@@ -971,7 +1018,7 @@ span {
       margin: 0 auto;
       left: 0;
       right: 0;
-      top: 30px;
+      top: 1%;
       align-self: center;
       flex-direction: column;
       border-radius: 20px;
@@ -1036,9 +1083,10 @@ span {
         flex-direction: column;
         justify-content: space-around;
         em {
-          @include styleText($fs-sub-title, $color-white, $fw-semi-bold)
+          @include styleText($fs-sub-title, $color-white, $fw-semi-bold);
         }
-        em, p {
+        em,
+        p {
           border-bottom: 1px dashed $color-white;
           padding-bottom: 10px;
         }
@@ -1071,9 +1119,22 @@ span {
         background: #5bc0be;
       }
     }
+
+    .invoice.responsive {
+      width: 30%;
+    }
   }
 }
 
+@media (max-width: 1200px) {
+  .order-overlay {
+    .order-now {
+      .invoice.responsive {
+        width: 40%;
+      }
+    } 
+  }
+}
 
 
 @media (max-width: 992px) {
@@ -1083,17 +1144,54 @@ span {
         height: 23%;
         font-size: $fs-sub-title;
       }
+
+      .invoice.responsive {
+        width: 50%;
+      }
     }
   }
 }
-
-
 
 @media (max-width: 768px) {
   .order-overlay {
     .order-now {
       .invoice {
-        height: 11%;
+        height: 17%;
+      }
+
+      .invoice.responsive {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .order-overlay {
+    .order-now {
+      .invoice.responsive {
+        width: 70%;
+      }
+    } 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .order-overlay {
+    .order-now {
+      .invoice {
+        height: 16%;
+        font-size: $fs-paragraph;
+        .order {
+          .btn {
+            padding: 10px 12px;
+          }
+        }
+      }
+
+      .invoice.responsive {
+        width: 80%;
       }
     }
   }
@@ -1110,7 +1208,7 @@ footer.gradient-custom {
   color: $color-white;
 
   h6 {
-    @include styleText($fs-sub-title, $color-white, $fw-semi-bold)
+    @include styleText($fs-sub-title, $color-white, $fw-semi-bold);
   }
 
   .copyright {
