@@ -1109,8 +1109,8 @@ span {
     }
 
     .invoice.responsive {
-      width: 30%;
-      height: 35%;
+      width: 25%;
+      height: 30%;
     }
   }
 }
@@ -1136,7 +1136,7 @@ span {
 
       .invoice.responsive {
         width: 50%;
-        height: 12%;
+        // height: 20%;
       }
     }
   }
@@ -1151,7 +1151,6 @@ span {
       }
       .invoice.responsive {
         width: 60%;
-        top: 4% !important;
       }
     }
   }

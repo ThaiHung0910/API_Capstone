@@ -311,6 +311,7 @@ function clearCart() {
 
 function order(money) {
   let e = document.getElementsByClassName("invoice")[0];
+  e.style.height = "500px"
   e.classList.add("responsive");
   e.innerHTML = orderConfirm(money);
 }
@@ -351,7 +352,7 @@ function okay(e) {
       (e.target.parentElement.querySelector(".order-details").innerHTML =
         "<em class='thanks'>Thanks for shopping with us</em>"),
       (t.style.height = "180px"),
-      (t.style.top = "9%"));
+      (t.style.top = "5%"));
 }
 
 // Event
