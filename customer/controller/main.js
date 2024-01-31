@@ -20,6 +20,7 @@ function renderProduct(arrProductList) {
     document.getElementById("phoneList").innerHTML = content;
 }
 
+
 function fetchProductList() {
   axios({
     url: "https://6597f7c2668d248edf23d04d.mockapi.io/api_capstone",
@@ -27,6 +28,7 @@ function fetchProductList() {
   })
     .then(function (res) {
       renderProduct(res.data);
+      renderProductAdmin(res.data)
       console.log(res.data);
     })
     .catch(function (err) {
