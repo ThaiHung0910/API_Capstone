@@ -842,20 +842,7 @@ span {
     .favourite.liked {
       display: block;
     }
-    // .out-of-stock-cover {
-    //   position: absolute;
-    //   width: 100%;
-    //   height: 100%;
-    //   background: rgba(0, 0, 0, 0.25);
-    //   justify-content: center;
-    //   align-items: center;
-    //   display: none;
-    //   span {
-    //     font-weight: 900;
-    //     color: rgba(255, 200, 200, 0.75);
-    //     font-size: 1.5rem;
-    //   }
-    // }
+    
 
     &:hover {
       border: none;
@@ -1010,7 +997,7 @@ span {
     .invoice {
       display: flex;
       position: absolute;
-      height: 35%;
+      height: 30%;
       width: 90%;
       background: rgba(0, 0, 0, 0.95);
       color: $color-white;
@@ -1018,7 +1005,7 @@ span {
       margin: 0 auto;
       left: 0;
       right: 0;
-      top: 1%;
+      top: 2%;
       align-self: center;
       flex-direction: column;
       border-radius: 20px;
@@ -1122,6 +1109,7 @@ span {
 
     .invoice.responsive {
       width: 30%;
+      height: 35%;
     }
   }
 }
@@ -1141,12 +1129,13 @@ span {
   .order-overlay {
     .order-now {
       .invoice {
-        height: 23%;
+        height: 20%;
         font-size: $fs-sub-title;
       }
 
       .invoice.responsive {
         width: 50%;
+        height: 12%;
       }
     }
   }
@@ -1154,13 +1143,14 @@ span {
 
 @media (max-width: 768px) {
   .order-overlay {
+    
     .order-now {
       .invoice {
-        height: 17%;
+        height: 15%;
       }
-
       .invoice.responsive {
         width: 60%;
+        top: 4% !important;
       }
     }
   }
@@ -1181,7 +1171,6 @@ span {
   .order-overlay {
     .order-now {
       .invoice {
-        height: 16%;
         font-size: $fs-paragraph;
         .order {
           .btn {

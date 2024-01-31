@@ -23,7 +23,7 @@ function renderProduct(arrProductList) {
         <div class="price">
             <span>$${arr.price}</span>
             <span class="like">
-              <button onclick="likeProduct(${arr.id})"><i class="fa-solid fa-heart"></i></button>
+              <button class="${arr.id}" onclick="likeProduct(${arr.id})"><i class="fa-solid fa-heart"></i></button>
             </span>
         </div>
         <div class="action">
@@ -98,6 +98,7 @@ function addProduct(id) {
           product.type
         )
       );
+
       while (i < cartLength) {
         if (cart[i].product.name === product.name) {
           cart[i].quality++;
@@ -193,7 +194,7 @@ function likeProduct(id) {
   var likeBtn = document.querySelectorAll(".like button"),
     favourite = document.querySelectorAll(".favourite");
   for (var i = 0; i < likeBtn.length; i++) {
-    if (i == id - 1) {
+    if(likeBtn[i].classList.contains(id)) {
       likeBtn[i].classList.toggle("liked");
       favourite[i].classList.toggle("liked");
     }
@@ -347,7 +348,7 @@ function okay(e) {
       (e.target.parentElement.querySelector(".order-details").innerHTML =
         "<em class='thanks'>Thanks for shopping with us</em>"),
       (t.style.height = "180px"),
-      (t.style.top = "15%"));
+      (t.style.top = "9%"));
 }
 
 // Event

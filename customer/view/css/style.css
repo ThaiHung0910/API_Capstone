@@ -714,7 +714,7 @@ span {
 .order-overlay .order-now .invoice {
   display: flex;
   position: absolute;
-  height: 35%;
+  height: 30%;
   width: 90%;
   background: rgba(0, 0, 0, 0.95);
   color: #ffffff;
@@ -722,7 +722,7 @@ span {
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 1%;
+  top: 2%;
   align-self: center;
   flex-direction: column;
   border-radius: 20px;
@@ -824,6 +824,7 @@ span {
 }
 .order-overlay .order-now .invoice.responsive {
   width: 30%;
+  height: 35%;
 }
 
 @media (max-width: 1200px) {
@@ -833,19 +834,21 @@ span {
 }
 @media (max-width: 992px) {
   .order-overlay .order-now .invoice {
-    height: 23%;
+    height: 20%;
     font-size: 18px;
   }
   .order-overlay .order-now .invoice.responsive {
     width: 50%;
+    height: 12%;
   }
 }
 @media (max-width: 768px) {
   .order-overlay .order-now .invoice {
-    height: 17%;
+    height: 15%;
   }
   .order-overlay .order-now .invoice.responsive {
     width: 60%;
+    top: 4% !important;
   }
 }
 @media (max-width: 576px) {
@@ -855,7 +858,6 @@ span {
 }
 @media (max-width: 480px) {
   .order-overlay .order-now .invoice {
-    height: 16%;
     font-size: 14px;
   }
   .order-overlay .order-now .invoice .order .btn {
