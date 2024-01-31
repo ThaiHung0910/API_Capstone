@@ -24,6 +24,13 @@
   </head>
 
   <body>
+    <div id="spinner-container">
+      <div id="spinner"  class="d-flex justify-content-center ">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark black fixed-top mb-5">
         <div class="container">
@@ -103,6 +110,21 @@
       <main role="main" class="mt-5">
         <div class="d-flex justify-content-between mb-2 py-3 px-2 phoneBanner">
           <h3 class="text-light">Phone Management</h3>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sort by Price
+            </button>
+            <div class="dropdown-menu" aria-labelledby="sortDropdownMenuButton">
+              <a class="dropdown-item" href="#" id="sortByPriceAsc">Low to High</a>
+              <a class="dropdown-item" href="#" id="sortByPriceDesc">High to Low</a>
+            </div>
+          </div>
+          
+              <div class="search-container">
+                <input type="text" class="form-control" placeholder="Search by name..." id="searchInput">
+                <button class="btn btn-primary" id="searchButton">Search</button>
+              </div>
+           
           <div class="text-right">
             <button
               type="button"
@@ -296,10 +318,12 @@
 
               <!-- Modal footer -->
               <div class="modal-footer" id="modal-footer">
-                <button type="button" class="btn" id="btnAddPhone">
+                <button type="button"
+                         onclick="addProductItemAdd()" 
+                         class="btn" id="btnAddPhone">
                   Add Phone
                 </button>
-                <button id="btnUpdate" type="button" class="btn">
+                <button  id="btnUpdate" type="button" onclick="updateProductItem()" class="btn" >
                   Update Phone
                 </button>
                 <button
@@ -436,20 +460,30 @@
     </footer>
     <!-- Footer -->
 
+    <!-- <script>
+      function inlog(){
+        console.log('addddd')
+      }
+    </script> -->
+
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+    integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
-      integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
+    integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
     ></script>
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="module" src="../controller/main.js"></script>
+    <script src="../controller/validator.js"></script>
+    <script src="../controller/main.js"></script>
+    
   </body>
 </html>

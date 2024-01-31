@@ -27,7 +27,7 @@ strong {
 }
 
 .btn {
-  border: 0;
+  
   color: rgba(255, 255, 255, 0.85);
   background-color: #294d5c;
   transition: all 0.15s;
@@ -56,7 +56,9 @@ strong {
 #btnDelete:hover {
   background-color: #e96949;
 }
-
+#btnEdit{
+  padding: 5px 21px;
+}
 #btnEdit,
 #btnAddPhone,
 #btnUpdate {
@@ -82,6 +84,38 @@ main {
   background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(83, 175, 196) 77%, rgb(0, 212, 255) 100%);
 }
 
+#spinner-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(78, 77, 77, 0.8); 
+  z-index: 1100; 
+}
+
+#spinner {
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Đặt z-index cao hơn để nó nằm trên các phần tử khác */
+  
+}
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: #fff;
+}
+
+.modal-backdrop{
+  width: 100%;
+  height: 100%;
+}
+
 header #navbarColor01 a {
   transition: 0.3s all ease-in-out;
 }
@@ -105,6 +139,12 @@ header #navbarColor01 a:hover {
   width: 100%;
 }
 
+.search-container {
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .phoneBanner {
   background-color: rgba(29, 38, 113, 0.7);
   border-top-left-radius: 10px;

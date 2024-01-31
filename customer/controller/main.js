@@ -300,6 +300,9 @@ function purchaseCartItem(e) {
   }
 }
 
+
+
+
 function clearCart() {
   cart = [];
   saveValueLocalStorage("Cart", cart);
@@ -368,11 +371,13 @@ $(window).on("scroll", function () {
 });
 
 // Call API
+
 function fetchProductList() {
   phoneServices
     .getProductList()
     .then(function (res) {
       renderProduct(res.data);
+      renderProductAdmin(res.data)
       console.log(res.data);
     })
     .catch(function (err) {
