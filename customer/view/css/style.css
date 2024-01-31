@@ -733,6 +733,7 @@ span {
   padding: 10px 0;
   width: 100%;
   justify-content: space-between;
+  overflow-y: auto;
 }
 .order-overlay .order-now .invoice .payment {
   display: flex;
