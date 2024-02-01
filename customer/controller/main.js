@@ -18,7 +18,9 @@ function renderProduct(arrProductList) {
     content += ` 
     <div class="col-lg-3 col-md-6 mt-4">
     <div class="product-item">
-        <div class="img"  style="background-image: url(${arr.img})"></div>
+        <div class="img" >
+          <img src="${arr.img}" />
+        </div>
         <h4 class="name">${arr.name}</h4>
         <div class="price">
             <span>$${arr.price}</span>
@@ -55,6 +57,21 @@ function renderProduct(arrProductList) {
     `;
   }
   document.getElementById("phoneList").innerHTML = content;
+  imageNotFound(".product-item .img img", arrProductList.length);
+}
+
+function imageNotFound(selector, length) {
+  if(length > 0) {
+    var images = document.querySelectorAll(selector);
+    images.forEach((img) => {
+      img.addEventListener("error", function handleError() {
+        const defaultImage =
+          "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg";
+        img.src = defaultImage;
+        img.alt = "Image Not Found";
+      });
+    });
+  }
 }
 
 function selectBrand() {
@@ -98,9 +115,8 @@ function addProduct(id) {
           product.type
         )
       );
-
       while (i < cartLength) {
-        if (cart[i].product.name === product.name) {
+        if (cart[i].product.name === product.name && cart[i].product.price == product.price) {
           cart[i].quality++;
           isAddCartItem = true;
           break;
@@ -125,7 +141,6 @@ function addProduct(id) {
       // } else {
       //   cart.push(cartItem);
       // }
-      // addItemShoppingCart(product)
       onSuccess("Add Success!");
       saveValueLocalStorage("Cart", cart);
       renderCart(cart.length);
@@ -174,10 +189,11 @@ function renderCart(length) {
                   </button>
                 </div>`;
     }
+    cartItems.innerHTML = htmls;
+    imageNotFound(".cart-item .cart-img img", length);
     shoppingCart.classList.add("shopping_cart");
     cartCount.style.display = "";
     cartCount.innerHTML = qualityCount;
-    cartItems.innerHTML = htmls;
     cartEmpty.classList.remove("is-show");
     totalMoney.innerHTML = total;
   } else {
@@ -194,13 +210,12 @@ function likeProduct(id) {
   var likeBtn = document.querySelectorAll(".like button"),
     favourite = document.querySelectorAll(".favourite");
   for (var i = 0; i < likeBtn.length; i++) {
-    if(likeBtn[i].classList.contains(id)) {
+    if (likeBtn[i].classList.contains(id)) {
       likeBtn[i].classList.toggle("liked");
       favourite[i].classList.toggle("liked");
     }
   }
 }
-
 
 function qtyChange(id, action) {
   for (var i = 0; i < cart.length; i++) {
@@ -300,9 +315,6 @@ function purchaseCartItem(e) {
   }
 }
 
-
-
-
 function clearCart() {
   cart = [];
   saveValueLocalStorage("Cart", cart);
@@ -311,7 +323,7 @@ function clearCart() {
 
 function order(money) {
   let e = document.getElementsByClassName("invoice")[0];
-  e.style.height = "500px"
+  e.style.height = "500px";
   e.classList.add("responsive");
   e.innerHTML = orderConfirm(money);
 }
@@ -378,7 +390,6 @@ function fetchProductList() {
     .getProductList()
     .then(function (res) {
       renderProduct(res.data);
-      renderProductAdmin(res.data)
       console.log(res.data);
     })
     .catch(function (err) {

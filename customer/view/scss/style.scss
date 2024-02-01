@@ -758,11 +758,9 @@ span {
     // }
 
     .img {
-      background-repeat: no-repeat;
-      background-position: top center;
-      background-size: contain;
-      padding-top: 100%;
-      border-radius: 2px 2px 0 0;
+      img {
+        width: 100%
+      }
     }
 
     .name {
@@ -1221,6 +1219,8 @@ footer.gradient-custom {
 }
 
 // Footer
+
+
 
 @keyframes scaleUp {
   from {
