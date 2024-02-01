@@ -136,6 +136,22 @@ header {
   }
 }
 
+@media (max-width: 991.98px) {
+  header {
+    .navbar {
+      .navbar-collapse.collapse {
+        background: $navbar-color;
+      }
+    }
+
+    nav.black {
+      .navbar-collapse.collapse {
+        background: none;
+      }
+    }
+  }
+}
+
 // Header
 
 // CAROUSEL
@@ -337,19 +353,6 @@ header {
 }
 
 @media (max-width: 991.98px) {
-  header {
-    .navbar {
-      .navbar-collapse.collapse {
-        background: $navbar-color;
-      }
-    }
-
-    nav.black {
-      .navbar-collapse.collapse {
-        background: none;
-      }
-    }
-  }
 
   .owl-carousel {
     .owl-stage-outer {
@@ -385,6 +388,68 @@ header {
         .carousel_item.item2 {
           .carousel_info {
             .carousel_inner {
+
+              .carousel_image {
+                width: 300px;
+                .carousel_sale {
+                  img {
+                    width: 70%;
+                  }
+
+                  .text {
+                    font-size: $fs-mini-title;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .owl-carousel {
+    .owl-stage-outer {
+      .owl-stage {
+        .carousel_item,
+        .carousel_item.item2 {
+          .carousel_info {
+            .carousel_inner {
+
+              .carousel_product {
+                .heading {
+                  font-size: $fs-sub-title;
+                }
+                .description {
+                  .desc {
+                    font-size: 16px;
+                  }
+                }
+              }
+
+              .carousel_image {
+                width: 250px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .owl-carousel {
+    .owl-stage-outer {
+      .owl-stage {
+        .carousel_item,
+        .carousel_item.item2 {
+          .carousel_info {
+            .carousel_inner {
+              
+              
               .carousel_product {
                 .heading {
                   font-size: 16px;
@@ -397,16 +462,7 @@ header {
               }
 
               .carousel_image {
-                width: 150px;
-                .carousel_sale {
-                  img {
-                    width: 70%;
-                  }
-
-                  .text {
-                    font-size: $fs-mini-title;
-                  }
-                }
+                width: 180px;
               }
             }
           }
